@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BudgetApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AccountManagement.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class AccountManagement : Page
     {
-        public MainWindow()
+        public AccountManagement()
         {
             InitializeComponent();
         }
