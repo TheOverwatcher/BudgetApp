@@ -23,7 +23,7 @@
         <Border Grid.Column="0" Grid.Row="0" Background="#4E87D4" Padding="5" Height="35">
             <Label VerticalAlignment="Center" Foreground="White">Home</Label>    
         </Border>
-        <ListBox Grid.Column="0" Grid.Row="1">
+        <ListBox Name="homeSelectBox"  Grid.Column="0" Grid.Row="1">
             <ListBoxItem>Budget Overview</ListBoxItem>
             <ListBoxItem>Account Overview</ListBoxItem>
         </ListBox>

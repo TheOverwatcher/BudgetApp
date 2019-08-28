@@ -20,6 +20,9 @@ namespace BudgetApp
     /// </summary>
     public partial class BudgetAppHome : Page
     {
+        private const string AccountOverviewLanding = "Account Overview";
+        private const string BudgetOverviewLanding = "Budget Overview";
+
         public BudgetAppHome()
         {
             InitializeComponent();
@@ -27,8 +30,21 @@ namespace BudgetApp
 
         private void viewListItem(object sender, RoutedEventArgs e )
         {
-            AccountManagement accountManagement = new AccountManagement();
-            this.NavigationService.Navigate(accountManagement);
+            if (this.homeSelectBox.SelectedItem.Equals(AccountOverviewLanding))
+            {
+                AccountManagement accountManagement = new AccountManagement();
+                this.NavigationService.Navigate(accountManagement);
+            }
+            else if (this.homeSelectBox.SelectedItem.ToString() == BudgetOverviewLanding)
+            {
+                BudgetManagement budgetManagement = new BudgetManagement();
+                this.NavigationService.Navigate(budgetManagement);
+            }
+            else;
+            {
+                //Provide a nice message saying why the page didn't change
+                MessageBox.Show("Cannot navigate to " + this.homeSelectBox.SelectedItem.ToString());
+            }
         }
     }
 }
