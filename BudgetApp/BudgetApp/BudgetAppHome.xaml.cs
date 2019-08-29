@@ -28,23 +28,22 @@ namespace BudgetApp
             InitializeComponent();
         }
 
-        private void viewListItem(object sender, RoutedEventArgs e )
+        private void goToBudgetPage(object sender, RoutedEventArgs e)
         {
-            if (this.homeSelectBox.SelectedItem.Equals(AccountOverviewLanding))
-            {
-                AccountManagement accountManagement = new AccountManagement();
-                this.NavigationService.Navigate(accountManagement);
-            }
-            else if (this.homeSelectBox.SelectedItem.ToString() == BudgetOverviewLanding)
-            {
-                BudgetManagement budgetManagement = new BudgetManagement();
-                this.NavigationService.Navigate(budgetManagement);
-            }
-            else;
-            {
-                //Provide a nice message saying why the page didn't change
-                MessageBox.Show("Cannot navigate to " + this.homeSelectBox.SelectedItem.ToString());
-            }
+            BudgetManagement budgetManagement = new BudgetManagement();
+            this.NavigationService.Navigate(budgetManagement);
+        }
+
+        private void goToAccountPage(object sender, RoutedEventArgs e)
+        {
+            AccountManagement accountManagement = new AccountManagement();
+            this.NavigationService.Navigate(accountManagement);
+        }
+
+        //A do nothing placeholder for the View button
+        private void viewListItem(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

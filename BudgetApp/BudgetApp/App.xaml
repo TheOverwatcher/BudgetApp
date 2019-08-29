@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:BudgetApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- Need to recheck styling -->
+        <Style x:Key="Simple" TargetType="{x:Type MenuItem}">
+            <Setter Property = "Background" Value= "{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"/>
+            <Setter Property = "Foreground" Value= "{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+            <Setter Property = "Height" Value= "{DynamicResource {x:Static SystemParameters.CaptionHeightKey}}"/>
+        </Style>
     </Application.Resources>
 </Application>
