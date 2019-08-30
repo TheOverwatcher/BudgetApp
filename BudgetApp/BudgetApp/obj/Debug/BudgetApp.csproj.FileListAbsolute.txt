@@ -20,3 +20,6 @@ C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\Budget
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetManagement.g.cs
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetManagement.baml
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\App.baml
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\SampleDatabase.mdf
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\SampleDatabase_log.ldf
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp_Content.g.cs
