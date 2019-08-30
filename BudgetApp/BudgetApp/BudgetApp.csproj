@@ -93,6 +93,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BudgetAppDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BudgetAppDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BudgetAppHome.xaml.cs">
       <DependentUpon>BudgetAppHome.xaml</DependentUpon>
     </Compile>
@@ -122,6 +127,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BudgetAppDatabaseDataSet.xsc">
+      <DependentUpon>BudgetAppDatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BudgetAppDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BudgetAppDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BudgetAppDatabaseDataSet.xss">
+      <DependentUpon>BudgetAppDatabaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,13 +159,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SampleDatabase.mdf">
+    <Content Include="BudgetAppDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SampleDatabase_log.ldf">
+    <Content Include="BudgetAppDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>SampleDatabase.mdf</DependentUpon>
+      <DependentUpon>BudgetAppDatabase.mdf</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
