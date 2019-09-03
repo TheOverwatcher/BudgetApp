@@ -68,13 +68,16 @@ namespace BudgetApp
             }
 
 
-            if(codeString.Length == 4 && (type.Equals(Constants.TYPE_CHECKING) || type.Equals(Constants.TYPE_SAVINGS)) && currentBalance >= 0)
+            if(codeString.Length == Constants.CODE_LENGTH && (type.Equals(Constants.TYPE_CHECKING) || type.Equals(Constants.TYPE_SAVINGS)) && currentBalance >= 0)
             {
                 string code = codeString.ToUpper();
 
                 // Access the database and update the table
+                // Error handling done in class, connection handled in own method
                 DatabaseAccessor dbaccessor = new DatabaseAccessor();
                 dbaccessor.InsertAccount(code, type, groupId, currentBalance);
+                dbaccessor.CloseConnection();
+
 
                 // Redirect back to page
                 Redirect(this.navigateTo);
@@ -83,6 +86,8 @@ namespace BudgetApp
             {
                 // Say the code should be 4 characters
                 // Or type should be checking/savings
+
+                //TODO better error messages
 
                 string message = "Please provide valid input";
                 string caption = "Invalid code or type";

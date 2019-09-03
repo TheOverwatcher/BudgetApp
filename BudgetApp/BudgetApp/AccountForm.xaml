@@ -33,7 +33,10 @@
             <Label>Account Code</Label>
             <TextBox Margin="5,0" Name="_accountCode" Text="4 character alphanumeric code"></TextBox>
             <Label>Account Type</Label>
-            <TextBox Margin="5,0" Name="_accountType" Text="Checking or Saving"></TextBox>
+            <ComboBox Margin="5,0" Name="_accountType">
+                <ComboBoxItem IsSelected="True">Checking</ComboBoxItem>
+                <ComboBoxItem >Savings</ComboBoxItem>
+            </ComboBox>
             <Label>Account Group</Label>
             <TextBox Margin="5,0" Name="_accountGroup"></TextBox>
             <Label>Starting Balance</Label>

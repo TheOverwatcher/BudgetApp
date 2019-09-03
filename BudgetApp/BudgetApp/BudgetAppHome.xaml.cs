@@ -28,6 +28,8 @@ namespace BudgetApp
         public BudgetAppHome()
         {
             InitializeComponent();
+
+            PopulateData();
         }
 
         public BudgetAppHome(int selectedIndex)
@@ -35,8 +37,15 @@ namespace BudgetApp
             InitializeComponent();
 
             MainTabControl.SelectedIndex = selectedIndex;
+
+            PopulateData();
         }
 
+        private void PopulateData() {
+            // Populate the data presented on each tab for the home page
+        }
+
+        // Event handlers for buttons
         private void GoToBudgetPage(object sender, RoutedEventArgs e)
         {
             BudgetManagement budgetManagement = new BudgetManagement();
@@ -58,6 +67,17 @@ namespace BudgetApp
         private void AddNewAccountGroup(object sender, RoutedEventArgs e)
         {
             // Make account group form to navigate
+        }
+
+        private void RemoveAccount(object sender, RoutedEventArgs e)
+        {
+            // Remove selected account that has been selected
+        }
+
+        private void RemoveAccountGroup(object sender, RoutedEventArgs e)
+        {
+            // Remove selected account group that has been selected, update the accounts
+            // If deleting this entry causes the FKs of Accounts to fail, don't allow the delete.
         }
 
         public string GetPageName()

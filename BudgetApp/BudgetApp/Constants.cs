@@ -21,9 +21,11 @@ namespace BudgetApp
         public const int HOME_BUDGET = 1;
         public const int HOME_ACCOUNT = 2;
 
+        // Miscellaneous 
         public const string TYPE_CHECKING = "Checking";
         public const string TYPE_SAVINGS = "Savings";
         public const char CHECKING = 'C';
         public const char SAVINGS = 'S';
+        public const int CODE_LENGTH = 4;
     }
 }
