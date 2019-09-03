@@ -13,5 +13,17 @@ namespace BudgetApp
         public const string ACCOUNT_MANAGEMENT = "Account Management";
         public const string ACCOUNT_FORM = "Account Form";
         public const string BUDGET_MANAGEMENT = "Budget Management";
+
+        //TODO modularize path
+        public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\grayson\\Documents\\GitHub\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf;Integrated Security=True";
+
+        // Home tab indexes
+        public const int HOME_BUDGET = 1;
+        public const int HOME_ACCOUNT = 2;
+
+        public const string TYPE_CHECKING = "Checking";
+        public const string TYPE_SAVINGS = "Savings";
+        public const char CHECKING = 'C';
+        public const char SAVINGS = 'S';
     }
 }

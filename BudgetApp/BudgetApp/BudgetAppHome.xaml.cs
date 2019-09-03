@@ -30,6 +30,13 @@ namespace BudgetApp
             InitializeComponent();
         }
 
+        public BudgetAppHome(int selectedIndex)
+        {
+            InitializeComponent();
+
+            MainTabControl.SelectedIndex = selectedIndex;
+        }
+
         private void GoToBudgetPage(object sender, RoutedEventArgs e)
         {
             BudgetManagement budgetManagement = new BudgetManagement();
@@ -44,7 +51,7 @@ namespace BudgetApp
 
         private void AddNewAccount(object sender, RoutedEventArgs e)
         {
-            AccountForm accountForm = new AccountForm(this.pageName);
+            AccountForm accountForm = new AccountForm(this.pageName, Constants.HOME_ACCOUNT);
             this.NavigationService.Navigate(accountForm);
         }
 

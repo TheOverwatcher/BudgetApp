@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2">
+        <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="MainTabControl">
             <TabItem Header="_Home" Style="{StaticResource Simple}"></TabItem>
             <TabItem Header="_Budget Overview"  Style="{StaticResource Simple}">
                 <ListBox x:Name="budgetListBox"></ListBox>

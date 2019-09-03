@@ -36,6 +36,8 @@
             <TextBox Margin="5,0" Name="_accountType" Text="Checking or Saving"></TextBox>
             <Label>Account Group</Label>
             <TextBox Margin="5,0" Name="_accountGroup"></TextBox>
+            <Label>Starting Balance</Label>
+            <TextBox Margin="5,0" Name="_balance"></TextBox>
         </StackPanel>
 
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
