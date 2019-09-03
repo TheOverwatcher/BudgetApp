@@ -37,24 +37,15 @@
             <Label>Account Group</Label>
             <TextBox Margin="5,0" Name="_accountGroup"></TextBox>
         </StackPanel>
-        <!--<StackPanel>
-            
-        </StackPanel>
-            
-        
-        <StackPanel>
-            
-        </StackPanel>
-        -->
-        
+
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Click="saveAction" Height="25" Margin="10">Save</Button>
-            <Button Click="cancelAction" Height="25" Margin="10" Grid.Column="1">Cancel</Button>
+            <Button Click="SaveAction" Height="25" Margin="10">Save</Button>
+            <Button Click="CancelAction" Height="25" Margin="10" Grid.Column="1">Cancel</Button>
         </Grid>
     </Grid>
 </Page>

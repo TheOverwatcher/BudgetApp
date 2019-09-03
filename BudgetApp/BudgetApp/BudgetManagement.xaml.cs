@@ -20,6 +20,7 @@ namespace BudgetApp
     /// </summary>
     public partial class BudgetManagement : Page
     {
+        private string pageName = Constants.BUDGET_MANAGEMENT;
         public BudgetManagement()
         {
             InitializeComponent();

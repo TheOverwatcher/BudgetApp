@@ -11,6 +11,7 @@ namespace BudgetApp
         // Page name constants
         public const string HOME = "Home";
         public const string ACCOUNT_MANAGEMENT = "Account Management";
-
+        public const string ACCOUNT_FORM = "Account Form";
+        public const string BUDGET_MANAGEMENT = "Budget Management";
     }
 }

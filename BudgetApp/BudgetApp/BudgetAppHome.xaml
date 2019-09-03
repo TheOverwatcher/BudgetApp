@@ -26,7 +26,7 @@
             </TabItem>
             <TabItem Header="_Account Overview" Style="{StaticResource Simple}">
                 <WrapPanel>
-                    <Button Click="addNewAccount">Add Account</Button>
+                    <Button Click="AddNewAccount">Add Account</Button>
                 </WrapPanel>
             </TabItem>
         </TabControl>

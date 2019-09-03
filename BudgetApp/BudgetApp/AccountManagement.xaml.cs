@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace BudgetApp
 {
+
     /// <summary>
     /// Interaction logic for AccountManagement.xaml
     /// </summary>
     public partial class AccountManagement : Page
     {
+        private string pageName = Constants.ACCOUNT_MANAGEMENT;
         public AccountManagement()
         {
             InitializeComponent();

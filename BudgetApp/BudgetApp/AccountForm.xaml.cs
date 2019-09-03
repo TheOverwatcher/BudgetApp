@@ -21,7 +21,7 @@ namespace BudgetApp
     public partial class AccountForm : Page
     {
         private string navigateTo;
-        private string pageName = Constants.ACCOUNT_MANAGEMENT;
+        private string pageName = Constants.ACCOUNT_FORM;
         public AccountForm()
         {
             InitializeComponent();
@@ -33,48 +33,50 @@ namespace BudgetApp
         // setup form with reference from where we navigated
         public AccountForm(string navigatedFrom)
         {
+            InitializeComponent();
+
             this.navigateTo = navigatedFrom;
         }
 
-        private void saveAction(object sender, RoutedEventArgs e)
+        private void SaveAction(object sender, RoutedEventArgs e)
         {
             // Update data set
 
             // Redirect back to page
-            redirect(this.navigateTo);
+            Redirect(this.navigateTo);
         }
 
-        private void cancelAction(object sender, RoutedEventArgs e)
+        private void CancelAction(object sender, RoutedEventArgs e)
         {
             // don't save the data, redirect home
-            redirect(this.navigateTo);
+            Redirect(this.navigateTo);
         }
 
-        private void redirect(string page)
+        private void Redirect(string page)
         {
             switch (page)
             {
                 case Constants.ACCOUNT_MANAGEMENT:
                     this.NavigationService.Navigate(new AccountManagement());
                     break;
-                case Constants.HOME:
+                case Constants.HOME: //TODO take into account tab on home page
                 default:
                     this.NavigationService.Navigate(new BudgetAppHome());
                     break;
             }
         }
 
-        public string getNavigateTo()
+        public string GetNavigateTo()
         {
             return navigateTo;
         }
 
-        public void setNavigateTo(string navigateTo)
+        public void SetNavigateTo(string navigateTo)
         {
             this.navigateTo = navigateTo;
         }
 
-        public string getPageName()
+        public string GetPageName()
         {
             return this.pageName;
         }

@@ -30,25 +30,25 @@ namespace BudgetApp
             InitializeComponent();
         }
 
-        private void goToBudgetPage(object sender, RoutedEventArgs e)
+        private void GoToBudgetPage(object sender, RoutedEventArgs e)
         {
             BudgetManagement budgetManagement = new BudgetManagement();
             this.NavigationService.Navigate(budgetManagement);
         }
 
-        private void goToAccountPage(object sender, RoutedEventArgs e)
+        private void GoToAccountPage(object sender, RoutedEventArgs e)
         {
             AccountManagement accountManagement = new AccountManagement();
             this.NavigationService.Navigate(accountManagement);
         }
 
-        private void addNewAccount(object sender, RoutedEventArgs e)
+        private void AddNewAccount(object sender, RoutedEventArgs e)
         {
             AccountForm accountForm = new AccountForm(this.pageName);
             this.NavigationService.Navigate(accountForm);
         }
 
-        public string getPageName()
+        public string GetPageName()
         {
             return this.pageName;
         }
