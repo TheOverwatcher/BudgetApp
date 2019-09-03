@@ -21,17 +21,14 @@ namespace BudgetApp
     /// </summary>
     public partial class AccountForm : Page
     {
-        private string navigateTo;
-        private string pageName = Constants.ACCOUNT_FORM;
-        private int tabIndex; // Potential tab index for home redirect
-
         public AccountForm()
         {
             InitializeComponent();
 
             //default navigation
-            this.navigateTo = Constants.HOME;
-            this.tabIndex = 0;
+            this.NavigateTo = Constants.HOME;
+            this.PageName = Constants.ACCOUNT_FORM;
+            this.TabIndex = 0;
         }
 
         // setup form with reference from where we navigated
@@ -39,8 +36,9 @@ namespace BudgetApp
         {
             InitializeComponent();
 
-            this.navigateTo = navigatedFrom;
-            this.tabIndex = tabIndex;
+            this.NavigateTo = navigatedFrom;
+            this.PageName = Constants.ACCOUNT_FORM;
+            this.TabIndex = tabIndex;
         }
 
         private void SaveAction(object sender, RoutedEventArgs e)
@@ -80,7 +78,7 @@ namespace BudgetApp
 
 
                 // Redirect back to page
-                Redirect(this.navigateTo);
+                Redirect(this.NavigateTo);
             }
             else
             {
@@ -93,8 +91,8 @@ namespace BudgetApp
                 string caption = "Invalid code or type";
                 MessageBoxButtons mbb = MessageBoxButtons.OK; // 0 is for OK
 
-                DialogResult result; 
-                result = System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
             }
 
             
@@ -103,7 +101,7 @@ namespace BudgetApp
         private void CancelAction(object sender, RoutedEventArgs e)
         {
             // don't save the data, redirect home
-            Redirect(this.navigateTo);
+            Redirect(this.NavigateTo);
         }
 
         private void Redirect(string page)
@@ -115,24 +113,15 @@ namespace BudgetApp
                     break;
                 case Constants.HOME: //TODO take into account tab on home page
                 default:
-                    this.NavigationService.Navigate(new BudgetAppHome(this.tabIndex));
+                    this.NavigationService.Navigate(new BudgetAppHome(this.TabIndex));
                     break;
             }
         }
 
-        public string GetNavigateTo()
-        {
-            return navigateTo;
-        }
+        public string NavigateTo { get; set; }
 
-        public void SetNavigateTo(string navigateTo)
-        {
-            this.navigateTo = navigateTo;
-        }
+        public string PageName { get; set; }
 
-        public string GetPageName()
-        {
-            return this.pageName;
-        }
+        public int TabIndex { get; set; }
     }
 }

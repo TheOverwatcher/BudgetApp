@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,11 @@ namespace BudgetApp
     /// </summary>
     public partial class BudgetAppHome : Page
     {
-        private const string AccountOverviewLanding = "Account Overview";
-        private const string BudgetOverviewLanding = "Budget Overview";
-
-        private string pageName = Constants.HOME;
-
         public BudgetAppHome()
         {
             InitializeComponent();
+
+            this.PageName = Constants.HOME;
 
             PopulateData();
         }
@@ -37,12 +35,22 @@ namespace BudgetApp
             InitializeComponent();
 
             MainTabControl.SelectedIndex = selectedIndex;
+            this.PageName = Constants.HOME;
 
             PopulateData();
         }
 
         private void PopulateData() {
             // Populate the data presented on each tab for the home page
+
+            DatabaseAccessor dbaccessor = new DatabaseAccessor();
+            ArrayList accounts = dbaccessor.SelectAllAccounts();
+            dbaccessor.CloseConnection();
+
+            foreach (Account account in accounts)
+            {
+                Console.WriteLine("AccountId" + account.AccountId);
+            }
         }
 
         // Event handlers for buttons
@@ -60,7 +68,7 @@ namespace BudgetApp
 
         private void AddNewAccount(object sender, RoutedEventArgs e)
         {
-            AccountForm accountForm = new AccountForm(this.pageName, Constants.HOME_ACCOUNT);
+            AccountForm accountForm = new AccountForm(this.PageName, Constants.HOME_ACCOUNT);
             this.NavigationService.Navigate(accountForm);
         }
 
@@ -80,9 +88,6 @@ namespace BudgetApp
             // If deleting this entry causes the FKs of Accounts to fail, don't allow the delete.
         }
 
-        public string GetPageName()
-        {
-            return this.pageName;
-        }
+        public string PageName { get; set; }
     }
 }

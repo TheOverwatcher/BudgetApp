@@ -21,15 +21,18 @@ namespace BudgetApp
     /// </summary>
     public partial class AccountManagement : Page
     {
-        private string pageName = Constants.ACCOUNT_MANAGEMENT;
         public AccountManagement()
         {
             InitializeComponent();
+
+            this.PageName = Constants.ACCOUNT_MANAGEMENT;
         }
 
         public AccountManagement (object data) : this()
         {
 
         }
+
+        public string PageName { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections;
 
 namespace BudgetApp
 {
@@ -24,7 +25,7 @@ namespace BudgetApp
 
             using (SqlCommand command = new SqlCommand(insertQuery, this.connection))
             {
-                connection.Open();
+                this.connection.Open();
                 try
                 {
                     //command.Parameters.Add("@Name", SqlDbType.VarChar);
@@ -46,21 +47,40 @@ namespace BudgetApp
             }
         }
 
-        public void SelectAllAccounts()
+        public ArrayList SelectAllAccounts()
         {
             string selectAllQuery = "SELECT * FROM ACCOUNTS";
 
             using(SqlCommand command = new SqlCommand(selectAllQuery, this.connection))
             {
+                ArrayList accountInfo = new ArrayList();
+                this.connection.Open();
                 try
                 {
-                    // TODO determine which execute is needed to select all data, update return value
-                    command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            //TODO debug the reader columns
+                            Console.WriteLine("Types: " + reader.GetFieldType(0) + "," + reader.GetFieldType(1) + "," + reader.GetFieldType(2) + "," + reader.GetFieldType(3) + "," + reader.GetFieldType(4) + "," + reader.GetFieldType(5) + ",");// + reader.GetFieldType(6));
+                            Account acc = new Account(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetFloat(5), reader.GetString(6));
+                            accountInfo.Add(acc);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for Accounts");
+                    }
+                    reader.Close();
+
                 }
-                catch(Exception e) // General Exception handling
+                catch (Exception e) // General Exception handling
                 {
                     Console.WriteLine("Error processing SQL while selecting. Message:" + e.Message + " SQL: " + selectAllQuery);
                 }
+
+                return accountInfo;
             }
 
         }
