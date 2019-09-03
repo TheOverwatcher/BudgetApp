@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="MainTabControl">
@@ -25,10 +25,27 @@
                 <ListBox x:Name="budgetListBox"></ListBox>
             </TabItem>
             <TabItem Header="_Account Overview" Style="{StaticResource Simple}">
-                <WrapPanel>
-                    <Button Click="AddNewAccount">Add Account</Button>
-                </WrapPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label FontWeight="Bold">Accounts</Label>
+                    <Label Grid.Column="1" FontWeight="Bold">Account Groups</Label>
+                    <ListBox Grid.Row="1"></ListBox>
+                    <ListBox Grid.Row="1" Grid.Column="2"></ListBox>
+
+                        <Button Grid.Row="2" Click="AddNewAccount" Height="25" Margin="10">Add Account</Button>
+                    <Button Grid.Row="2" Click="AddNewAccountGroup" Height="25" Margin="10" Grid.Column="1">Add Account Group</Button>
+                </Grid>
             </TabItem>
         </TabControl>
+        
     </Grid>
 </Page>

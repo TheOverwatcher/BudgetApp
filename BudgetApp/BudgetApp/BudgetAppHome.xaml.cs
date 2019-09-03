@@ -55,6 +55,11 @@ namespace BudgetApp
             this.NavigationService.Navigate(accountForm);
         }
 
+        private void AddNewAccountGroup(object sender, RoutedEventArgs e)
+        {
+            // Make account group form to navigate
+        }
+
         public string GetPageName()
         {
             return this.pageName;
