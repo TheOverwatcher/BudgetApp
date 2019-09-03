@@ -61,7 +61,11 @@ namespace BudgetApp
 
             }
 
-            float currentBalance = float.Parse(_balance.Text);
+            int currentBalance;
+            if(int.TryParse(_balance.Text, out currentBalance))
+            {
+
+            }
 
 
             if(codeString.Length == 4 && (type.Equals(Constants.TYPE_CHECKING) || type.Equals(Constants.TYPE_SAVINGS)) && currentBalance >= 0)
