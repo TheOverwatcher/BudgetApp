@@ -23,3 +23,30 @@ C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\App.ba
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\SampleDatabase.mdf
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\SampleDatabase_log.ldf
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp_Content.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetAppDatabase.mdf
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetAppDatabase_log.ldf
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetApp.exe.config
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetApp.exe
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetApp.pdb
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.csprojAssemblyReference.cache
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountManagement.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetAppHome.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetManagement.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\MainWindow.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\App.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp_Content.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp_MarkupCompile.cache
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp_MarkupCompile.lref
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\App.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountManagement.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetAppHome.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetManagement.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\MainWindow.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.g.resources
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.Properties.Resources.resources
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.csproj.GenerateResource.cache
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.csproj.CoreCompileInputs.cache
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.exe
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.pdb
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountForm.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountForm.baml

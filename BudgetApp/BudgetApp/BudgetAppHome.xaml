@@ -20,18 +20,15 @@
         </Grid.RowDefinitions>
 
         <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <TabItem Header="_Home" Style="{StaticResource Simple}">
-
+            <TabItem Header="_Home" Style="{StaticResource Simple}"></TabItem>
+            <TabItem Header="_Budget Overview"  Style="{StaticResource Simple}">
+                <ListBox x:Name="budgetListBox"></ListBox>
             </TabItem>
-            <TabItem Header="_Budget Overview"  Style="{StaticResource Simple}"></TabItem>
             <TabItem Header="_Account Overview" Style="{StaticResource Simple}">
-                <ListBox Name="homeListBox">
-                </ListBox>
+                <WrapPanel>
+                    <Button Click="addNewAccount">Add Account</Button>
+                </WrapPanel>
             </TabItem>
-
         </TabControl>
-
-
-        <Button Grid.Column="1" Grid.Row="2" Margin="38,0" Width="124" Height="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="viewListItem">View</Button>
     </Grid>
 </Page>

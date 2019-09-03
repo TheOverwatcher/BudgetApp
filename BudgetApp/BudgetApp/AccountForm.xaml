@@ -1,0 +1,60 @@
+﻿<Page x:Class="BudgetApp.AccountForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BudgetApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="New Account Form">
+
+    
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush>White</SolidColorBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Height="35" Background="LightBlue" Grid.ColumnSpan="2">
+            <Label FontWeight="Bold">Account Information</Label>
+        </Border>
+
+        <StackPanel Grid.Row="1">
+            <Label>Account Name</Label>
+            <TextBox  Margin="5,0" Grid.Row="0" Name="_accountName"></TextBox>
+            <Label>Account Code</Label>
+            <TextBox Margin="5,0" Name="_accountCode" Text="4 character alphanumeric code"></TextBox>
+            <Label>Account Type</Label>
+            <TextBox Margin="5,0" Name="_accountType" Text="Checking or Saving"></TextBox>
+            <Label>Account Group</Label>
+            <TextBox Margin="5,0" Name="_accountGroup"></TextBox>
+        </StackPanel>
+        <!--<StackPanel>
+            
+        </StackPanel>
+            
+        
+        <StackPanel>
+            
+        </StackPanel>
+        -->
+        
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Click="saveAction" Height="25" Margin="10">Save</Button>
+            <Button Click="cancelAction" Height="25" Margin="10" Grid.Column="1">Cancel</Button>
+        </Grid>
+    </Grid>
+</Page>

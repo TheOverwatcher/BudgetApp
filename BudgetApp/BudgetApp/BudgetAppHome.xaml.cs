@@ -23,6 +23,8 @@ namespace BudgetApp
         private const string AccountOverviewLanding = "Account Overview";
         private const string BudgetOverviewLanding = "Budget Overview";
 
+        private string pageName = Constants.HOME;
+
         public BudgetAppHome()
         {
             InitializeComponent();
@@ -40,10 +42,15 @@ namespace BudgetApp
             this.NavigationService.Navigate(accountManagement);
         }
 
-        //A do nothing placeholder for the View button
-        private void viewListItem(object sender, RoutedEventArgs e)
+        private void addNewAccount(object sender, RoutedEventArgs e)
         {
+            AccountForm accountForm = new AccountForm(this.pageName);
+            this.NavigationService.Navigate(accountForm);
+        }
 
+        public string getPageName()
+        {
+            return this.pageName;
         }
     }
 }
