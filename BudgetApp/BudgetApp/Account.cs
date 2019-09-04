@@ -9,7 +9,7 @@ namespace BudgetApp
     class Account
     {
 
-        public Account(int id, string name, string code, string type, int groupId, float balance, string condition)
+        public Account(int id, string name, string code, string type, int groupId, Double balance, string condition)
         {
             this.AccountId = id;
             this.AccountName =  name;
@@ -30,7 +30,7 @@ namespace BudgetApp
 
         public int AccountGroupId { get; set; }
 
-        public float Balance { get; set; }
+        public Double Balance { get; set; }
 
         public string Condition { get; set; }
     }

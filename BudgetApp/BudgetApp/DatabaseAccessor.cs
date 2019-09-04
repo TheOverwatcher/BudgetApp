@@ -63,8 +63,9 @@ namespace BudgetApp
                         while (reader.Read())
                         {
                             //TODO debug the reader columns
-                            Console.WriteLine("Types: " + reader.GetFieldType(0) + "," + reader.GetFieldType(1) + "," + reader.GetFieldType(2) + "," + reader.GetFieldType(3) + "," + reader.GetFieldType(4) + "," + reader.GetFieldType(5) + ",");// + reader.GetFieldType(6));
-                            Account acc = new Account(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetFloat(5), reader.GetString(6));
+                            // account_id,account_code,account_type,account_group_id,current_balance,condition
+                            // System.Int32,System.String,System.String,System.Int32,System.Double,System.String
+                            Account acc = new Account(reader.GetInt32(0), "Name not found", reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetDouble(4), reader.GetString(5));
                             accountInfo.Add(acc);
                         }
                     }
