@@ -50,6 +50,7 @@ namespace BudgetApp
             foreach (Account account in accounts)
             {
                 Console.WriteLine("AccountId" + account.AccountId);
+                
             }
         }
 
