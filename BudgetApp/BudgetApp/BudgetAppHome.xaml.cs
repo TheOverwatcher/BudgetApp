@@ -25,6 +25,8 @@ namespace BudgetApp
         {
             InitializeComponent();
 
+            DataContext = new BaseViewModel();
+
             this.PageName = Constants.HOME;
 
             PopulateData();
