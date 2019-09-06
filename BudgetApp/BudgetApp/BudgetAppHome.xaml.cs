@@ -28,8 +28,6 @@ namespace BudgetApp
             DataContext = new BaseViewModel();
 
             this.PageName = Constants.HOME;
-
-            PopulateData();
         }
 
         public BudgetAppHome(int selectedIndex)
@@ -40,13 +38,6 @@ namespace BudgetApp
 
             MainTabControl.SelectedIndex = selectedIndex;
             this.PageName = Constants.HOME;
-
-            PopulateData();
-        }
-
-        private void PopulateData() {
-            // Populate the data presented on each tab for the home page
-
 
         }
 
