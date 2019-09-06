@@ -20,8 +20,8 @@ namespace BudgetApp
 
 
         //TODO modularize path
-        public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\grayson\\Documents\\GitHub\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf;Integrated Security=True";
-        //public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf\";Integrated Security = True";
+        //public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\grayson\\Documents\\GitHub\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf;Integrated Security=True";
+        public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf\";Integrated Security = True";
 
         // Home tab indexes
         public const int HOME_BUDGET = 1;

@@ -36,6 +36,8 @@ namespace BudgetApp
         {
             InitializeComponent();
 
+            DataContext = new BaseViewModel();
+
             MainTabControl.SelectedIndex = selectedIndex;
             this.PageName = Constants.HOME;
 
@@ -45,15 +47,7 @@ namespace BudgetApp
         private void PopulateData() {
             // Populate the data presented on each tab for the home page
 
-            DatabaseAccessor dbaccessor = new DatabaseAccessor();
-            ArrayList accounts = dbaccessor.SelectAllAccounts();
-            dbaccessor.CloseConnection();
 
-            foreach (Account account in accounts)
-            {
-                Console.WriteLine("AccountId" + account.AccountId);
-                
-            }
         }
 
         // Event handlers for buttons

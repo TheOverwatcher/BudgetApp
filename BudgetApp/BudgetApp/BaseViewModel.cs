@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,6 +14,20 @@ namespace BudgetApp
     class BaseViewModel : INotifyPropertyChanged
     {
 
+        string _pageName = "Test Name";
+        public string PageName
+        {
+            get { return _pageName; }
+            set { SetProperty(ref _pageName, value); }
+        }
+
+        ObservableCollection<Account> _accounts = new DatabaseAccessor().SelectAllAccounts();
+        public ObservableCollection<Account> Accounts
+        {
+            get { return _accounts; }
+            set { SetProperty(ref _accounts, value); }
+        }
+
         // Use to set properties from which you need a notification
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
@@ -19,8 +35,6 @@ namespace BudgetApp
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
-
-
 
             backingStore = value;
             onChanged?.Invoke();
@@ -35,8 +49,6 @@ namespace BudgetApp
             var changed = PropertyChanged;
             if (changed == null)
                 return;
-
- 
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

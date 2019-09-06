@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace BudgetApp
 {
@@ -47,13 +48,13 @@ namespace BudgetApp
             }
         }
 
-        public ArrayList SelectAllAccounts()
+        public ObservableCollection<Account> SelectAllAccounts()
         {
             string selectAllQuery = "SELECT * FROM ACCOUNTS";
 
             using(SqlCommand command = new SqlCommand(selectAllQuery, this.connection))
             {
-                ArrayList accountInfo = new ArrayList();
+                ObservableCollection<Account> accountInfo = new ObservableCollection<Account>();
                 this.connection.Open();
                 try
                 {
@@ -62,10 +63,9 @@ namespace BudgetApp
                     {
                         while (reader.Read())
                         {
-                            //TODO debug the reader columns
                             // account_id,account_code,account_type,account_group_id,current_balance,condition
                             // System.Int32,System.String,System.String,System.Int32,System.Double,System.String
-                            Account acc = new Account(reader.GetInt32(0), "Name not found", reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetDouble(4), reader.GetString(5));
+                            Account acc = new Account(reader.GetInt32(0), "Name not required", reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetDouble(4), reader.GetString(5));
                             accountInfo.Add(acc);
                         }
                     }

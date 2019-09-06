@@ -39,14 +39,15 @@
                     </Grid.RowDefinitions>
 
                     <Label FontWeight="Bold">Accounts</Label>
+                    <TextBox Text="{Binding PageName}"></TextBox>
                     <Label Grid.Column="2" FontWeight="Bold">Account Groups</Label>
                     <ListView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" />
-                                <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" />
-                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" />
-                                <GridViewColumn Header="GroupId" DisplayMemberBinding="{Binding GroupId}" />
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AccountId}" />
+                                <GridViewColumn Header="Code" DisplayMemberBinding="{Binding AccountCode}" />
+                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding AccountType}" />
+                                <GridViewColumn Header="GroupId" DisplayMemberBinding="{Binding AccountGroupId}" />
                                 <GridViewColumn Header="Balance" DisplayMemberBinding="{Binding Balance}" />
                                 <GridViewColumn Header="Condition" DisplayMemberBinding="{Binding Condition}" />
                             </GridView>
