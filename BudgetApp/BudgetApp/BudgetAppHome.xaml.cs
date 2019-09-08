@@ -68,7 +68,6 @@ namespace BudgetApp
 
         private void RemoveAccount(object sender, RoutedEventArgs e)
         {
-            string tablename = Constants.ACCOUNTS_TABLE;
             if (AccountsList.SelectedItems.Count > 0)
             {
 
@@ -98,6 +97,28 @@ namespace BudgetApp
                 System.Windows.Forms.MessageBox.Show(message, caption, mbb);
             }
             
+        }
+
+        private void UpdateSelectedAccount(object sender, RoutedEventArgs e)
+        {
+            if (AccountsList.SelectedItems.Count > 0)
+            {
+                // Get account selected
+                Account selectedAccount = (Account)AccountsList.SelectedItems[0];
+
+                AccountForm accountForm = new AccountForm(this.PageName, Constants.HOME_ACCOUNT, selectedAccount);
+                this.NavigationService.Navigate(accountForm);
+            }
+            else
+            {
+                string message = "Please select an account to update.";
+                string caption = "No account selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
+
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
+
         }
 
         private void RemoveAccountGroup(object sender, RoutedEventArgs e)

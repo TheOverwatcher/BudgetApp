@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BudgetApp
 {
-    class Account
+    public class Account
     {
 
         public Account(int id, string name, string code, string type, int groupId, Double balance, string condition)

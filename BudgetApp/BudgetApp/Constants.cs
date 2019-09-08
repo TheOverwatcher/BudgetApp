@@ -33,6 +33,8 @@ namespace BudgetApp
         public const char CHECKING = 'C';
         public const char SAVINGS = 'S';
         public const int CODE_LENGTH = 4;
+        
+
 
         // Table names
         public const string ACCOUNTS_TABLE = "ACCOUNTS";

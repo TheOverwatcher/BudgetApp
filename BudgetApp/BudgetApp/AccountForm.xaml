@@ -29,18 +29,18 @@
 
         <StackPanel Grid.Row="1">
             <Label>Account Name</Label>
-            <TextBox  Margin="5,0" Grid.Row="0" Name="_accountName"></TextBox>
+            <TextBox  Margin="5,0" Grid.Row="0" Name="_accountName" Text="{Binding AccountName}"></TextBox>
             <Label>Account Code</Label>
-            <TextBox Margin="5,0" Name="_accountCode" Text="4 character alphanumeric code"></TextBox>
+            <TextBox Margin="5,0" Name="_accountCode" Text="{Binding AccountCode}"></TextBox>
             <Label>Account Type</Label>
-            <ComboBox Margin="5,0" Name="_accountType">
-                <ComboBoxItem IsSelected="True">Checking</ComboBoxItem>
-                <ComboBoxItem >Savings</ComboBoxItem>
+            <ComboBox Margin="5,0" Name="_accountType" ItemsSource="{Binding AccountTypes}" SelectedItem="{Binding AccountType, Mode=TwoWay}">
+                <!--<ComboBoxItem Name="CheckingCheckBoxItem">Checking</ComboBoxItem>
+                <ComboBoxItem Name="SavingsCheckBoxItem">Savings</ComboBoxItem>-->
             </ComboBox>
             <Label>Account Group</Label>
-            <TextBox Margin="5,0" Name="_accountGroup"></TextBox>
+            <TextBox Margin="5,0" Name="_accountGroup" Text="{Binding AccountGroup}"></TextBox>
             <Label>Starting Balance</Label>
-            <TextBox Margin="5,0" Name="_balance"></TextBox>
+            <TextBox Margin="5,0" Name="_balance" Text="{Binding Balance}"></TextBox>
         </StackPanel>
 
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">

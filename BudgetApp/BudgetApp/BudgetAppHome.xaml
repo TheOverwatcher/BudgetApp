@@ -39,26 +39,33 @@
                     </Grid.RowDefinitions>
 
                     <Label FontWeight="Bold">Accounts</Label>
-                    <TextBox Text="{Binding PageName}"></TextBox>
-                    <Label Grid.Column="2" FontWeight="Bold">Account Groups</Label>
-                    <ListView Grid.Row="1" Grid.ColumnSpan="2" Name="AccountsList" ItemsSource="{Binding Accounts}">
+                    <Label Grid.Column="3" FontWeight="Bold">Account Groups</Label>
+                    <ListView Grid.Row="1" Grid.ColumnSpan="3" Name="AccountsList" ItemsSource="{Binding Accounts}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AccountId}" />
-                                <GridViewColumn Header="Code" DisplayMemberBinding="{Binding AccountCode}" />
+                                <GridViewColumn Header="Account Code" DisplayMemberBinding="{Binding AccountCode}" />
+                                <GridViewColumn Header="Current Balance" DisplayMemberBinding="{Binding Balance}" />
                                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding AccountType}" />
                                 <GridViewColumn Header="GroupId" DisplayMemberBinding="{Binding AccountGroupId}" />
-                                <GridViewColumn Header="Balance" DisplayMemberBinding="{Binding Balance}" />
                                 <GridViewColumn Header="Condition" DisplayMemberBinding="{Binding Condition}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Name="AccountGroupListBox"></ListBox>
+                    <ListBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Name="AccountGroupListBox"></ListBox>
 
                     <Button Grid.Row="2" Click="AddNewAccount" Style="{StaticResource SimpleButton}">Add Account</Button>
-                    <Button Grid.Row="2" Grid.Column="1" Click="RemoveAccount" Style="{StaticResource SimpleButton}">Remove Account</Button>
-                    <Button Grid.Row="2" Grid.Column="2" Click="AddNewAccountGroup" Style="{StaticResource SimpleButton}">Add Account Group</Button>
-                    <Button Grid.Row="2" Grid.Column="3" Click="RemoveAccountGroup" Style="{StaticResource SimpleButton}">Remove Account Group</Button>
+                    <Button Grid.Row="2" Grid.Column="1" Click="UpdateSelectedAccount" Style="{StaticResource SimpleButton}">Update Account</Button>
+                    <Button Grid.Row="2" Grid.Column="2" Click="RemoveAccount" Style="{StaticResource SimpleButton}">Remove Account</Button>
+                    <Grid Grid.Row="2" Grid.Column="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Click="AddNewAccountGroup" Style="{StaticResource SimpleButton}">Add</Button>
+                        <Button Grid.Column="1" Click="RemoveAccountGroup" Style="{StaticResource SimpleButton}">Remove</Button>
+                    </Grid>
+                    
                 </Grid>
             </TabItem>
         </TabControl>

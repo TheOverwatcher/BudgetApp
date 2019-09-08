@@ -29,6 +29,8 @@ namespace BudgetApp
             this.NavigateTo = Constants.HOME;
             this.PageName = Constants.ACCOUNT_FORM;
             this.TabIndex = 0;
+
+            DataContext = new AccountFormViewModel();
         }
 
         // setup form with reference from where we navigated
@@ -39,6 +41,24 @@ namespace BudgetApp
             this.NavigateTo = navigatedFrom;
             this.PageName = Constants.ACCOUNT_FORM;
             this.TabIndex = tabIndex;
+
+            DataContext = new AccountFormViewModel();
+        }
+
+        public AccountForm(string navigatedFrom, int tabIndex, Account accountToUpdate)
+        {
+            InitializeComponent();
+
+            this.NavigateTo = navigatedFrom;
+            this.PageName = Constants.ACCOUNT_FORM;
+            this.TabIndex = tabIndex;
+
+            DataContext = new AccountFormViewModel();
+
+            if (accountToUpdate != null)
+            {
+                //TODO update DataContext with current information
+            }
         }
 
         private void SaveAction(object sender, RoutedEventArgs e)
@@ -123,5 +143,6 @@ namespace BudgetApp
         public string PageName { get; set; }
 
         public int TabIndex { get; set; }
+
     }
 }
