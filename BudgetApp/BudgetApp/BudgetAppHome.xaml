@@ -41,7 +41,7 @@
                     <Label FontWeight="Bold">Accounts</Label>
                     <TextBox Text="{Binding PageName}"></TextBox>
                     <Label Grid.Column="2" FontWeight="Bold">Account Groups</Label>
-                    <ListView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}">
+                    <ListView Grid.Row="1" Grid.ColumnSpan="2" Name="AccountsList" ItemsSource="{Binding Accounts}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AccountId}" />

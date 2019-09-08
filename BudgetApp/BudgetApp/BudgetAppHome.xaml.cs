@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -67,7 +68,36 @@ namespace BudgetApp
 
         private void RemoveAccount(object sender, RoutedEventArgs e)
         {
-            // Remove selected account that has been selected
+            string tablename = Constants.ACCOUNTS_TABLE;
+            if (AccountsList.SelectedItems.Count > 0)
+            {
+
+                Account selectedAccount = (Account)AccountsList.SelectedItems[0];
+
+                //Verify the account should be deleted
+                string message = "Are you sure you want to delete account " + selectedAccount.AccountCode;
+                string caption = "Verify account removal.";
+                MessageBoxButtons mbb = MessageBoxButtons.YesNo;
+
+                DialogResult result = System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                if (result == DialogResult.Yes)
+                {
+                    // Remove selected account that has been selected
+                    DatabaseAccessor DbAccessor = new DatabaseAccessor();
+                    DbAccessor.DeleteAccount(selectedAccount.AccountId);
+                    DbAccessor.CloseConnection();
+                }
+            }
+            else
+            {
+                string message = "Please select an account to delete.";
+                string caption = "No account selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
+
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
+            
         }
 
         private void RemoveAccountGroup(object sender, RoutedEventArgs e)
@@ -77,5 +107,6 @@ namespace BudgetApp
         }
 
         public string PageName { get; set; }
+
     }
 }

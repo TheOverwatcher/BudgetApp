@@ -19,10 +19,31 @@ namespace BudgetApp
             this.connection = new SqlConnection(Constants.CONNECTION_STRING);
         }
 
+        public void DeleteAccount( int id)
+        {
+            string deleteQuery = "DELETE FROM ACCOUNTS WHERE ACCOUNT_ID = @Id";
+
+            using(SqlCommand command = new SqlCommand(deleteQuery, this.connection))
+            {
+                this.connection.Open();
+                
+                try
+                {
+                    command.Parameters.Add("@Id", SqlDbType.Int);
+                    command.Parameters["@Id"].Value = id;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e) // General exception handling
+                {
+                    Console.WriteLine("Error processing SQL while deleting from Accounts table. Message:" + e.Message + " SQL: " + deleteQuery);
+                }
+            }
+        }
+
         public void InsertAccount(string code, string type, int groupId, Double currentBalance)
         {
             string insertQuery = "INSERT INTO ACCOUNTS (ACCOUNT_CODE, ACCOUNT_TYPE, ACCOUNT_GROUP_ID, CURRENT_BALANCE, CONDITION)"
-                 + " VALUES (@Code,@Type,@GroupId,@Balance,'Open');";
+                 + " VALUES (@Code,@Type,@GroupId,@Balance,'Open')";
 
             using (SqlCommand command = new SqlCommand(insertQuery, this.connection))
             {
@@ -82,6 +103,24 @@ namespace BudgetApp
                 }
 
                 return accountInfo;
+            }
+
+        }
+
+        public void UpdateAccount(int accountId)
+        {
+            string updateAccountQuery = "UPDATE ACCOUNTS SET () WHERE ACCOUNT_ID = @Id";
+
+            using (SqlCommand command = new SqlCommand(updateAccountQuery, this.connection))
+            {
+                try
+                {
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while updating account " + accountId + ". Message:" + e.Message + " SQL: " + updateAccountQuery);
+                }
             }
 
         }

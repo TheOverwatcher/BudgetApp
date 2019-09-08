@@ -19,7 +19,7 @@ namespace BudgetApp
         public const string BUDGET_OVERVIEW = "Budget Overview";
 
 
-        //TODO modularize path
+        //TODO modularize path into configuration
         //public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\grayson\\Documents\\GitHub\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf;Integrated Security=True";
         public const string CONNECTION_STRING = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetAppDatabase.mdf\";Integrated Security = True";
 
@@ -33,5 +33,8 @@ namespace BudgetApp
         public const char CHECKING = 'C';
         public const char SAVINGS = 'S';
         public const int CODE_LENGTH = 4;
+
+        // Table names
+        public const string ACCOUNTS_TABLE = "ACCOUNTS";
     }
 }
