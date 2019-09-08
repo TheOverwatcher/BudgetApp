@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Configuration;
 
 namespace BudgetApp
 {
@@ -16,7 +17,20 @@ namespace BudgetApp
 
         public DatabaseAccessor()
         {
-            this.connection = new SqlConnection(Constants.CONNECTION_STRING);
+
+            AppDomain.CurrentDomain.SetData("DataDirectory", "E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp");
+
+            string connectionString = null;
+            ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
+            if (settings != null)
+            {
+                connectionString = settings[1].ConnectionString; // settings[0] is def
+                this.connection = new SqlConnection(connectionString);
+            }
+            else
+            {
+                Console.WriteLine("Error finding connection string. Please check that configuration was setup.");
+            }
         }
 
         public void DeleteAccount( int id)
