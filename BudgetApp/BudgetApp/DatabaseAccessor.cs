@@ -24,7 +24,7 @@ namespace BudgetApp
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
             if (settings != null)
             {
-                connectionString = settings[1].ConnectionString; // settings[0] is def
+                connectionString = Constants.CONNECTION_STRING;//settings[1].ConnectionString; // settings[0] is def
                 this.connection = new SqlConnection(connectionString);
             }
             else

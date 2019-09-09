@@ -15,7 +15,11 @@ namespace BudgetApp
             set { SetProperty(ref _accountType, value); }
         }
 
-        public enum _accountTypes { Checking = 0, Savings = 1 };
+        private enum _accountTypes { Checking = 0, Savings = 1 };
+        public Array AccountTypes
+        {
+            get { return Enum.GetValues(typeof(_accountTypes)); }
+        }
 
         private string _accountName = "Example Name";
         public string AccountName
