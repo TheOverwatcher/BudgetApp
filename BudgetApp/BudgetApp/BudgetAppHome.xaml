@@ -44,6 +44,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding AccountId}" />
+                                <GridViewColumn Header="Account Name" DisplayMemberBinding="{Binding AccountName}"/>
                                 <GridViewColumn Header="Account Code" DisplayMemberBinding="{Binding AccountCode}" />
                                 <GridViewColumn Header="Current Balance" DisplayMemberBinding="{Binding Balance}" />
                                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding AccountType}" />

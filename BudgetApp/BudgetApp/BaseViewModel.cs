@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace BudgetApp
@@ -19,13 +14,6 @@ namespace BudgetApp
         {
             get { return _pageName; }
             set { SetProperty(ref _pageName, value); }
-        }
-
-        ObservableCollection<Account> _accounts = new DatabaseAccessor().SelectAllAccounts();
-        public ObservableCollection<Account> Accounts
-        {
-            get { return _accounts; }
-            set { SetProperty(ref _accounts, value); }
         }
 
         // Use to set properties from which you need a notification

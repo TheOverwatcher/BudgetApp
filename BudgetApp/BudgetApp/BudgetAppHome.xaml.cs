@@ -26,7 +26,7 @@ namespace BudgetApp
         {
             InitializeComponent();
 
-            DataContext = new BaseViewModel();
+            DataContext = new BudgetAppHomeViewModel();
 
             this.PageName = Constants.HOME;
         }
@@ -35,7 +35,7 @@ namespace BudgetApp
         {
             InitializeComponent();
 
-            DataContext = new BaseViewModel();
+            DataContext = new BudgetAppHomeViewModel();
 
             MainTabControl.SelectedIndex = selectedIndex;
             this.PageName = Constants.HOME;

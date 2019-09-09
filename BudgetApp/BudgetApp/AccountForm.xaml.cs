@@ -52,70 +52,102 @@ namespace BudgetApp
             this.NavigateTo = navigatedFrom;
             this.PageName = Constants.ACCOUNT_FORM;
             this.TabIndex = tabIndex;
+            this.IsUpdateForm = true;
+            this.Account = accountToUpdate;
 
-            DataContext = new AccountFormViewModel();
+            DataContext = new AccountFormViewModel(accountToUpdate.AccountName, accountToUpdate.AccountType, accountToUpdate.AccountCode, accountToUpdate.Balance.ToString(), accountToUpdate.AccountGroupId.ToString());
 
-            if (accountToUpdate != null)
-            {
-                //TODO update DataContext with current information
-            }
         }
 
         private void SaveAction(object sender, RoutedEventArgs e)
         {
-            /*
-             * Validate parameters
-             * name = string
-             * code = 4 characters
-             * type = Checking or Savings (C or S)
-             * group can be null
-             */
-            //string name = _accountName.Text;
-            string codeString = _accountCode.Text;
-            string type = _accountType.Text;
+            string message = "";
+            MessageBoxButtons mbb = MessageBoxButtons.OK;
+            string caption = "";
+
+            string accountName = _accountName.Text;
+            string accountCode = _accountCode.Text.ToUpper(); ;
+            string accountType = _accountType.Text;
             int groupId = -1;
-            if(int.TryParse(_accountGroup.Text, out groupId))
+            int.TryParse(_accountGroup.Text, out groupId);
+            
+            //TODO currency format
+            float currentBalance;
+            float.TryParse(_balance.Text, out currentBalance);
+
+
+
+            message = ValidateParameters(accountName, accountType, accountCode, groupId, currentBalance);
+            if (message.Length > 0)
             {
+                caption = "Invalid Account Information";
 
-            }
-
-            int currentBalance;
-            if(int.TryParse(_balance.Text, out currentBalance))
-            {
-
-            }
-
-
-            if(codeString.Length == Constants.CODE_LENGTH && (type.Equals(Constants.TYPE_CHECKING) || type.Equals(Constants.TYPE_SAVINGS)) && currentBalance >= 0)
-            {
-                string code = codeString.ToUpper();
-
-                // Access the database and update the table
-                // Error handling done in class, connection handled in own method
-                DatabaseAccessor dbaccessor = new DatabaseAccessor();
-                dbaccessor.InsertAccount(code, type, groupId, currentBalance);
-                dbaccessor.CloseConnection();
-
-
-                // Redirect back to page
-                Redirect(this.NavigateTo);
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
             }
             else
             {
-                // Say the code should be 4 characters
-                // Or type should be checking/savings
+                // Access the database and update the table
+                // Error handling done in class, connection handled in own method
+                DatabaseAccessor dbaccessor = new DatabaseAccessor();
+                // If we are updating existing info, don't create a new instance
+                if (this.IsUpdateForm)
+                {
+                    //Check if values changed. If not don't update
+                    if (this.Account.AccountName.Equals(accountName)
+                        && this.Account.AccountCode.Equals(accountCode)
+                        //&& this.Account.AccountType.Equals(accountType) TODO account type verification
+                        && this.Account.AccountGroupId.Equals(groupId)
+                        && this.Account.Balance.Equals(currentBalance))
+                    {
+                        caption = "No changes were made. Returning to Account Overview.";
 
-                //TODO better error messages
+                        // No changes were made. Inform the user and then navigate away.
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                        if (result == DialogResult.OK)
+                        {
+                            Redirect(this.NavigateTo);
+                        }
+                    }
+                    else
+                    {
+                        dbaccessor.UpdateAccount(this.Account.AccountId, accountName, accountCode, accountType, groupId, currentBalance);
+                        caption = "Account updated sucessfully. Returning to Account Overview";
 
-                string message = "Please provide valid input";
-                string caption = "Invalid code or type";
-                MessageBoxButtons mbb = MessageBoxButtons.OK; // 0 is for OK
+                        // No changes were made. Inform the user and then navigate away.
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                        if (result == DialogResult.OK)
+                        {
+                            Redirect(this.NavigateTo);
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    dbaccessor.InsertAccount(accountName, accountCode, accountType, groupId, currentBalance);
 
-                //DialogResult result; 
-                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                    // Redirect back to page
+                    Redirect(this.NavigateTo);
+                }
+                dbaccessor.CloseConnection();
             }
 
-            
+        }
+
+        private string ValidateParameters(string name, string type, string code, int groupId, float balance)
+        {
+            if (name == null || name.Length <= 0) return "Name required for account.";
+
+            if (!type.Equals(Constants.TYPE_CHECKING) && !type.Equals(Constants.TYPE_SAVINGS)) return "Type of account must be Checking or Savings";
+
+            if (code.Length != Constants.CODE_LENGTH) return "Account Code must be 4 characters"; //TODO Check that code doesn't already exist
+
+            if (groupId < 0) return "Group Id must be greater than 0";
+
+            if (balance < 0) return "Balance must be greater than 0";
+
+
+            return "";
         }
 
         private void CancelAction(object sender, RoutedEventArgs e)
@@ -138,11 +170,20 @@ namespace BudgetApp
             }
         }
 
+        //TODO redefine properties
         public string NavigateTo { get; set; }
 
         public string PageName { get; set; }
 
         public int TabIndex { get; set; }
 
+        private bool _isUpdateForm = false;
+        public bool IsUpdateForm
+        {
+            get { return _isUpdateForm; }
+            set { _isUpdateForm = value;  }
+        }
+
+        public Account Account { get; set;}
     }
 }

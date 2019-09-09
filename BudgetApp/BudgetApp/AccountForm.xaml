@@ -33,11 +33,7 @@
             <Label>Account Code</Label>
             <TextBox Margin="5,0" Name="_accountCode" Text="{Binding AccountCode}"></TextBox>
             <Label>Account Type</Label>
-            <!-- Listview bound to enum, template of listview is a combobox -->
-            <ComboBox Margin="5,0" Name="_accountType" ItemsSource="{Binding AccountTypes, Mode=OneWay}" SelectedItem="{Binding AccountType, Mode=TwoWay}">
-                <!--<ComboBoxItem Name="CheckingCheckBoxItem">Checking</ComboBoxItem>
-                <ComboBoxItem Name="SavingsCheckBoxItem">Savings</ComboBoxItem>-->
-            </ComboBox>
+            <ComboBox Margin="5,0" Name="_accountType" ItemsSource="{Binding AccountTypes, Mode=OneWay}" SelectedItem="{Binding AccountType, Mode=TwoWay}"></ComboBox> <!-- TODO combo box selection -->
             <Label>Account Group</Label>
             <TextBox Margin="5,0" Name="_accountGroup" Text="{Binding AccountGroup}"></TextBox>
             <Label>Starting Balance</Label>

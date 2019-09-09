@@ -111,6 +111,7 @@
     <Compile Include="BudgetAppHome.xaml.cs">
       <DependentUpon>BudgetAppHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BudgetAppHomeViewModel.cs" />
     <Compile Include="BudgetManagement.xaml.cs">
       <DependentUpon>BudgetManagement.xaml</DependentUpon>
     </Compile>

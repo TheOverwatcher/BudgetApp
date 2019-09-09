@@ -8,8 +8,23 @@ namespace BudgetApp
 {
     class AccountFormViewModel : BaseViewModel
     {
-        private string _accountType = "Checking";
-        public string AccountType
+        public AccountFormViewModel()
+        {
+
+        }
+
+        public AccountFormViewModel(string name, string type, string code, string balance, string accGroup )
+        {
+            // TODO set selected account type when the page loads
+            //this.AccountType = type;
+            this.AccountName = name;
+            this.AccountCode = code;
+            this.Balance = balance;
+            this.AccountGroup = accGroup;
+        }
+
+        private int _accountType = 0;
+        public int AccountType
         {
             get { return _accountType; }
             set { SetProperty(ref _accountType, value); }
@@ -45,5 +60,6 @@ namespace BudgetApp
             get { return _accountGroup; }
             set { SetProperty(ref _accountGroup, value); }
         }
+
     }
 }
