@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,24 +14,29 @@ namespace BudgetApp
 
         }
 
-        public AccountFormViewModel(string name, string type, string code, string balance, string accGroup )
+        public AccountFormViewModel(string name, string type, string code, string balance, string accGroup)
         {
             // TODO set selected account type when the page loads
-            //this.AccountType = type;
+            this.AccountType = convertStringToAccountType(type);
             this.AccountName = name;
             this.AccountCode = code;
             this.Balance = balance;
             this.AccountGroup = accGroup;
         }
 
-        private int _accountType = 0;
-        public int AccountType
+        public _accountTypes convertStringToAccountType (string type)
+        {
+            return (_accountTypes)TypeDescriptor.GetConverter(_accountType).ConvertFrom(type);
+        }
+
+        private _accountTypes _accountType = _accountTypes.Checking;
+        public _accountTypes AccountType
         {
             get { return _accountType; }
             set { SetProperty(ref _accountType, value); }
         }
 
-        private enum _accountTypes { Checking = 0, Savings = 1 };
+        public enum _accountTypes { Checking = 0, Savings = 1 };
         public Array AccountTypes
         {
             get { return Enum.GetValues(typeof(_accountTypes)); }

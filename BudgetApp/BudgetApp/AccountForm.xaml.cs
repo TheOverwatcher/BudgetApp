@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static BudgetApp.AccountFormViewModel;
 
 namespace BudgetApp
 {
@@ -55,7 +57,7 @@ namespace BudgetApp
             this.IsUpdateForm = true;
             this.Account = accountToUpdate;
 
-            DataContext = new AccountFormViewModel(accountToUpdate.AccountName, accountToUpdate.AccountType, accountToUpdate.AccountCode, accountToUpdate.Balance.ToString(), accountToUpdate.AccountGroupId.ToString());
+            DataContext = new AccountFormViewModel(accountToUpdate.AccountName,accountToUpdate.AccountType, accountToUpdate.AccountCode, accountToUpdate.Balance.ToString(), accountToUpdate.AccountGroupId.ToString());
 
         }
 
@@ -95,7 +97,7 @@ namespace BudgetApp
                     //Check if values changed. If not don't update
                     if (this.Account.AccountName.Equals(accountName)
                         && this.Account.AccountCode.Equals(accountCode)
-                        //&& this.Account.AccountType.Equals(accountType) TODO account type verification
+                        && this.Account.AccountType.Equals(new AccountFormViewModel().convertStringToAccountType(accountType))
                         && this.Account.AccountGroupId.Equals(groupId)
                         && this.Account.Balance.Equals(currentBalance))
                     {
