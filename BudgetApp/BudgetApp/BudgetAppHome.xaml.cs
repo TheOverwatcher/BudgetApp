@@ -127,6 +127,22 @@ namespace BudgetApp
             // If deleting this entry causes the FKs of Accounts to fail, don't allow the delete.
         }
 
+        private void AddNewBudget(object sender, RoutedEventArgs e)
+        {
+            BudgetForm budgetForm = new BudgetForm(this.PageName, Constants.HOME_BUDGET);
+            this.NavigationService.Navigate(budgetForm);
+        }
+
+        private void RemoveBudget(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            //Console.WriteLine("Selection was changed");
+        }
+
         public string PageName { get; set; }
 
     }

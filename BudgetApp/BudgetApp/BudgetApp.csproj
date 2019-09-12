@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BudgetForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BudgetManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +106,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseForm.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="BudgetAppDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,6 +117,9 @@
       <DependentUpon>BudgetAppHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="BudgetAppHomeViewModel.cs" />
+    <Compile Include="BudgetForm.xaml.cs">
+      <DependentUpon>BudgetForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BudgetManagement.xaml.cs">
       <DependentUpon>BudgetManagement.xaml</DependentUpon>
     </Compile>

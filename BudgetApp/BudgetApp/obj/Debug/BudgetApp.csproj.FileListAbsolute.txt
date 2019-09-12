@@ -52,3 +52,5 @@ C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\Budget
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\bin\Debug\BudgetAppDatabase_log.ldf
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountForm.g.cs
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\AccountForm.baml
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.g.cs
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.baml

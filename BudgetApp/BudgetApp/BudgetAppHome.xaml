@@ -9,6 +9,13 @@
       Title="BudgetAppHome">
 
     <Grid>
+        <!-- Sample Template-->
+        <Grid.Resources>
+            <DataTemplate x:Key="ExampleTemplate">
+                
+            </DataTemplate>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition />
@@ -19,12 +26,64 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="MainTabControl">
-            <TabItem Header="_Home" Style="{StaticResource Simple}"></TabItem>
-            <TabItem Header="_Budget Overview"  Style="{StaticResource Simple}">
-                <ListBox x:Name="budgetListBox"></ListBox>
+        <TabControl Background="#4E87D4" Padding="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Name="MainTabControl" SelectionChanged="SelectionChanged">
+            <TabItem Name="HomeTabItem" Header="_Home" Style="{StaticResource Simple}"></TabItem>
+            
+            <TabItem Name="BudgetTabItem" Header="_Budget Overview"  Style="{StaticResource Simple}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width=".1*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label FontWeight="Bold">Budget</Label>
+                    <ListView Grid.Row="1" Grid.RowSpan="3" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Budget ID"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label Grid.Column="2" FontWeight="Bold">Budget Details</Label>
+                    <ListView Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                        <ListView.View>
+                            <GridView>
+                                
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label Grid.Column="2" Grid.Row="2" FontWeight="Bold">Budget Categories</Label>
+                    <ListView Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Category ID"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Click="AddNewBudget" Style="{StaticResource SimpleButton}">Add</Button>
+                        <Button Grid.Column="1" Click="RemoveBudget" Style="{StaticResource SimpleButton}">Remove</Button>
+                    </Grid>
+                    <Button Grid.Row="4" Grid.Column="4" Style="{StaticResource SimpleButton}">Manage Categories</Button>
+                </Grid>
             </TabItem>
-            <TabItem Header="_Account Overview" Style="{StaticResource Simple}">
+            
+            <TabItem Name="AccountTabItem" Header="_Account Overview" Style="{StaticResource Simple}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
