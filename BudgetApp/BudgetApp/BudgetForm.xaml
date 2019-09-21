@@ -14,32 +14,50 @@
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border Height="35" Background="LightBlue" Grid.ColumnSpan="2">
-            <Label FontWeight="Bold">Account Information</Label>
+        <Border Height="35" Background="LightBlue" Grid.ColumnSpan="3">
+            <Label FontWeight="Bold">Budget Information</Label>
         </Border>
 
-        <StackPanel Grid.Row="1">
-            <Label>Account Name</Label>
-            <TextBox  Margin="5,0" Grid.Row="0" Name="_accountName" Text="{Binding AccountName}"></TextBox>
-            <Label>Account Code</Label>
-            <TextBox Margin="5,0" Name="_accountCode" Text="{Binding AccountCode}"></TextBox>
-            <Label>Account Type</Label>
-            <ComboBox Margin="5,0" Name="_accountType" ItemsSource="{Binding AccountTypes, Mode=OneWay}" SelectedItem="{Binding AccountType, Mode=TwoWay}"></ComboBox>
-            <Label>Account Group</Label>
-            <TextBox Margin="5,0" Name="_accountGroup" Text="{Binding AccountGroup}"></TextBox>
-            <Label>Starting Balance</Label>
-            <TextBox Margin="5,0" Name="_balance" Text="{Binding Balance}"></TextBox>
+        <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Label>Budget Name</Label>
+            <TextBox  Margin="5" Grid.Row="0" Name="_budgetName" Text="{Binding BudgetName}"></TextBox>
+        </DockPanel>
+
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label>Available Categories</Label>
+            <ListBox Grid.Row="1"></ListBox>
+        </Grid>
+        
+        <!-- Add and remove buttons -->
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+            <Button Click="AssociateCategoryToBudget" Style="{StaticResource SimpleButton}">Add</Button>
+            <Button Click="DisassociateCategoryToBudget" Style="{StaticResource SimpleButton}">Remove</Button>
         </StackPanel>
 
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Grid.Column="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label>Associated Categories</Label>
+            <ListBox Grid.Row="1"></ListBox>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

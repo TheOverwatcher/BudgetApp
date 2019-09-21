@@ -47,6 +47,16 @@ namespace BudgetApp
             Redirect(this.NavigateTo);
         }
 
+        public void AssociateCategoryToBudget(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DisassociateCategoryToBudget(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Redirect(string page)
         {
             switch (page)
