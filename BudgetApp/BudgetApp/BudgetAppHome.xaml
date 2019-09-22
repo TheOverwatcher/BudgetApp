@@ -50,7 +50,8 @@
                     <ListView Grid.Row="1" Grid.RowSpan="3" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Budget ID"/>
+                                <GridViewColumn Header="ID"/>
+                                <GridViewColumn Header="Budget Name"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
