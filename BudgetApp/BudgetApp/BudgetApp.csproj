@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="BaseForm.cs" />
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Budget.cs" />
     <Compile Include="BudgetAppDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,6 +121,7 @@
     <Compile Include="BudgetForm.xaml.cs">
       <DependentUpon>BudgetForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BudgetFormViewModel.cs" />
     <Compile Include="BudgetManagement.xaml.cs">
       <DependentUpon>BudgetManagement.xaml</DependentUpon>
     </Compile>

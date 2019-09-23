@@ -165,7 +165,7 @@ namespace BudgetApp
                 case Constants.ACCOUNT_MANAGEMENT:
                     this.NavigationService.Navigate(new AccountManagement());
                     break;
-                case Constants.HOME: //TODO take into account tab on home page
+                case Constants.HOME:
                 default:
                     this.NavigationService.Navigate(new BudgetAppHome(this.TabIndex));
                     break;

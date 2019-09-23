@@ -143,6 +143,19 @@ namespace BudgetApp
             //Console.WriteLine("Selection was changed");
         }
 
+        private void ManageBudget(object sender, RoutedEventArgs e)
+        {
+            Budget selectedBudget = (Budget)BudgetList.SelectedItems[0];
+
+            BudgetForm budgetForm = new BudgetForm(this.PageName, Constants.HOME_BUDGET, selectedBudget);
+            this.NavigationService.Navigate(budgetForm);
+        }
+
+        private void ManageCategories(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         public string PageName { get; set; }
 
     }
