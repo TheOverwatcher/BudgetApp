@@ -86,6 +86,7 @@ namespace BudgetApp
                     DbAccessor.DeleteAccount(selectedAccount.AccountId);
                     DbAccessor.CloseConnection();
                 }
+                Redirect(Constants.HOME, Constants.HOME_ACCOUNT);
             }
             else
             {
@@ -135,25 +136,77 @@ namespace BudgetApp
 
         private void RemoveBudget(object sender, RoutedEventArgs e)
         {
+            if (BudgetList.SelectedItems.Count > 0)
+            {
 
+                Budget selectedBudget = (Budget)BudgetList.SelectedItems[0];
+
+                //Verify the account should be deleted
+                string message = "Are you sure you want to delete account " + selectedBudget.BudgetName;
+                string caption = "Verify account removal.";
+                MessageBoxButtons mbb = MessageBoxButtons.YesNo;
+
+                DialogResult result = System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+                if (result == DialogResult.Yes)
+                {
+                    // Remove selected account that has been selected
+                    DatabaseAccessor DbAccessor = new DatabaseAccessor();
+                    DbAccessor.DeleteBudget(selectedBudget.BudgetId);
+                    DbAccessor.CloseConnection();
+                }
+                Redirect(Constants.HOME, Constants.HOME_BUDGET);
+            }
+            else
+            {
+                string message = "Please select a budget to delete.";
+                string caption = "No budget selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
+
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
         }
 
         private void SelectionChanged (object sender, SelectionChangedEventArgs e)
         {
+            // Update the other lists to have correct information to the budget
             //Console.WriteLine("Selection was changed");
         }
 
         private void ManageBudget(object sender, RoutedEventArgs e)
         {
-            Budget selectedBudget = (Budget)BudgetList.SelectedItems[0];
+            if(BudgetList.SelectedItems.Count > 0)
+            {
+                Budget selectedBudget = (Budget)BudgetList.SelectedItems[0];
 
-            BudgetForm budgetForm = new BudgetForm(this.PageName, Constants.HOME_BUDGET, selectedBudget);
-            this.NavigationService.Navigate(budgetForm);
+                BudgetForm budgetForm = new BudgetForm(this.PageName, Constants.HOME_BUDGET, selectedBudget);
+                this.NavigationService.Navigate(budgetForm);
+            }
+            else
+            {
+                string message = "Please select a budget to update.";
+                string caption = "No budget selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
+
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
+            
         }
 
         private void ManageCategories(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Redirect(string page, int tabIndex)
+        {
+            switch (page)
+            {
+                default:
+                    this.NavigationService.Navigate(new BudgetAppHome(tabIndex));
+                    break;
+            }
         }
 
         public string PageName { get; set; }

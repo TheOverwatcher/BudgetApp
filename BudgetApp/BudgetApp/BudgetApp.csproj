@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CategoriesManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,6 +129,11 @@
     <Compile Include="BudgetManagement.xaml.cs">
       <DependentUpon>BudgetManagement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoriesManagement.xaml.cs">
+      <DependentUpon>CategoriesManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs" />
+    <Compile Include="CategoryManagementViewModel.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DatabaseAccessor.cs" />
     <Compile Include="MainWindow.xaml.cs">
