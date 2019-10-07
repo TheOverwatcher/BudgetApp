@@ -397,7 +397,7 @@ namespace BudgetApp
 
         public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId)
         {
-            string selectAllCategoriesQuery = "SELECT * FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID <> @BudgetId";
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY LEFT OUTER JOIN BUDGET_CATEGORY_REL ON BUDGET_ID <> @BudgetId";
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
             {

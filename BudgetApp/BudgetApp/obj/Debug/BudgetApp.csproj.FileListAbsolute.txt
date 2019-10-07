@@ -56,3 +56,5 @@ C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\Budget
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.baml
 E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.g.cs
 E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.baml
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.g.cs
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.baml

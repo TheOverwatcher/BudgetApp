@@ -18,6 +18,7 @@ namespace BudgetApp
         // Tab name constants
         public const string ACCOUNT_OVERVIEW = "Account Overview";
         public const string BUDGET_OVERVIEW = "Budget Overview";
+        public const string CATEGORIES_OVERVIEW = "Categories Overview";
 
 
         //TODO modularize path into configuration

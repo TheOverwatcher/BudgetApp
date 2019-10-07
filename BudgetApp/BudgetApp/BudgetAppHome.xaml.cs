@@ -196,7 +196,8 @@ namespace BudgetApp
 
         private void ManageCategories(object sender, RoutedEventArgs e)
         {
-
+            CategoriesManagement categoriesManagement = new CategoriesManagement();
+            this.NavigationService.Navigate(categoriesManagement);
         }
 
         private void Redirect(string page, int tabIndex)

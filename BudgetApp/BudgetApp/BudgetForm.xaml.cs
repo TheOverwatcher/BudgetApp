@@ -49,7 +49,7 @@ namespace BudgetApp
             this.Budget = selectedBudget;
             this.IsUpdateForm = true;
 
-            DataContext = new BudgetFormViewModel(selectedBudget.BudgetName);
+            DataContext = new BudgetFormViewModel(selectedBudget.BudgetName, selectedBudget.BudgetId);
         }
 
         public void SaveAction(object sender, RoutedEventArgs e)
