@@ -120,18 +120,61 @@ namespace BudgetApp
 
         public void AssociateCategoryToBudget(object sender, RoutedEventArgs e)
         {
+            DatabaseAccessor dbaccessor = new DatabaseAccessor();
+            if(AvailableCategories.SelectedItems.Count > 0)
+            {
+                foreach(Object o in AvailableCategories.SelectedItems)
+                {
+                    Category category = (Category)o;
+                    dbaccessor.AssociateCategoryToBudget(this.Budget.BudgetId, category.CategoryId);
+                }
+                Redirect(this.PageName);
+            }
+            else
+            {
+                string message = "Please select a category to add.";
+                string caption = "No category selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
 
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
+
+            dbaccessor.CloseConnection();
         }
 
         private void DisassociateCategoryToBudget(object sender, RoutedEventArgs e)
         {
+            DatabaseAccessor dbaccessor = new DatabaseAccessor();
+            if (AssociatedCategories.SelectedItems.Count > 0)
+            {
+                foreach (Object o in AssociatedCategories.SelectedItems)
+                {
+                    Category category = (Category)o;
+                    dbaccessor.DisassociateCategoryToBudget(this.Budget.BudgetId, category.CategoryId);
+                }
+                Redirect(this.PageName);
+            }
+            else
+            {
+                string message = "Please select a category to remove.";
+                string caption = "No category selected.";
+                MessageBoxButtons mbb = MessageBoxButtons.OK;
 
+                //DialogResult result; 
+                System.Windows.Forms.MessageBox.Show(message, caption, mbb);
+            }
+
+            dbaccessor.CloseConnection();
         }
 
         private void Redirect(string page)
         {
             switch (page)
             {
+                case Constants.BUDGET_FORM:
+                    this.NavigationService.Navigate(new BudgetForm(this.NavigateTo, this.TabIndex, this.Budget));
+                    break;
                 case Constants.BUDGET_MANAGEMENT:
                     this.NavigationService.Navigate(new BudgetManagement());
                     break;

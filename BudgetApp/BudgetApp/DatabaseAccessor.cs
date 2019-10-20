@@ -358,9 +358,12 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId)
+        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId, int recordCount)
         {
-            string selectAllCategoriesQuery = "SELECT * FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId";
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+                
+            if(recordCount > 0)
+                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
             {
@@ -395,9 +398,12 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId)
+        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId, int recordCount)
         {
-            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY LEFT OUTER JOIN BUDGET_CATEGORY_REL ON BUDGET_ID <> @BudgetId";
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+
+            if (recordCount > 0)
+                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID <> C.CATEGORY_ID");
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
             {
@@ -429,6 +435,72 @@ namespace BudgetApp
                 }
 
                 return categoryInfo;
+            }
+        }
+
+        public void AssociateCategoryToBudget(int budgetId, int categoryId)
+        {
+            string insertBudgetCategoryRelQuery = "INSERT INTO BUDGET_CATEGORY_REL (BUDGET_ID, CATEGORY_ID) VALUES (@BudgetId, @CategoryId)";
+
+            using (SqlCommand command = new SqlCommand(insertBudgetCategoryRelQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.Int);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    command.Parameters.Add("@CategoryId", SqlDbType.Int);
+                    command.Parameters["@CategoryId"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while associating category " + categoryId + "to budget " + budgetId + ". Message:" + e.Message + " SQL: " + insertBudgetCategoryRelQuery);
+                }
+            }
+        }
+
+        public void DisassociateCategoryToBudget(int budgetId, int categoryId)
+        {
+            string deleteBudgetCategoryRelQuery = "DELETE FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId AND CATEGORY_ID = @CategoryId";
+
+            using (SqlCommand command = new SqlCommand(deleteBudgetCategoryRelQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.Int);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    command.Parameters.Add("@CategoryId", SqlDbType.Int);
+                    command.Parameters["@CategoryId"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while deleting category " + categoryId + ". Message:" + e.Message + " SQL: " + deleteBudgetCategoryRelQuery);
+                }
+            }
+        }
+
+        public int CountBudgetCategoryRel()
+        {
+            string countBudgetCategoryRelQuery = "SELECT COUNT(*) FROM BUDGET_CATEGORY_REL";
+
+            using (SqlCommand command = new SqlCommand(countBudgetCategoryRelQuery, this.connection))
+            {
+                int count = 0;
+                try
+                {
+                    this.connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    count = reader.GetInt32(0);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while counting records in budget_category_rel. Message:" + e.Message + " SQL: " + countBudgetCategoryRelQuery);
+                }
+                return count;
             }
         }
 
