@@ -22,6 +22,7 @@ namespace BudgetApp
     /// </summary>
     public partial class BudgetAppHome : Page
     {
+
         public BudgetAppHome()
         {
             InitializeComponent();
@@ -167,10 +168,24 @@ namespace BudgetApp
             }
         }
 
-        private void SelectionChanged (object sender, SelectionChangedEventArgs e)
+        private void BudgetSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Update the other lists to have correct information to the budget
-            //Console.WriteLine("Selection was changed");
+            // Console.WriteLine("Selection was changed");
+            Budget selectedBudget = null;
+            if (BudgetList.SelectedItems.Count > 0)
+            {
+                selectedBudget = (Budget)BudgetList.SelectedItems[0];
+            }
+
+            // Select budget-category information and only update if a new budget was selected
+            if(selectedBudget != null && selectedBudget.BudgetId != this.CurrentSelectedBudgetId)
+            {
+                this.CurrentSelectedBudgetId = selectedBudget.BudgetId;
+                this.DataContext = new BudgetAppHomeViewModel(selectedBudget.BudgetId);
+            }
+                
+
         }
 
         private void ManageBudget(object sender, RoutedEventArgs e)
@@ -211,6 +226,9 @@ namespace BudgetApp
         }
 
         public string PageName { get; set; }
+
+        public int CurrentSelectedBudgetId { get; set; }
+
 
     }
 }

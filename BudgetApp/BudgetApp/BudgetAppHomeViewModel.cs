@@ -19,6 +19,11 @@ namespace BudgetApp
             this.PageName = pageName;
         }
 
+        public BudgetAppHomeViewModel(int budgetId)
+        {
+            this.AssociatedCategoriesInfo = new DatabaseAccessor().SelectAllCategoryInformationAssociatedToBudget(budgetId);
+        }
+
         ObservableCollection<Account> _accounts = new DatabaseAccessor().SelectAllAccounts();
         public ObservableCollection<Account> Accounts
         {
@@ -32,5 +37,14 @@ namespace BudgetApp
             get { return _budgets; }
             set { SetProperty(ref _budgets, value); }
         }
+
+        ObservableCollection<BudgetCategory> _associatedCategoriesInfo = new ObservableCollection<BudgetCategory>();
+        public ObservableCollection<BudgetCategory> AssociatedCategoriesInfo
+        {
+            get { return _associatedCategoriesInfo; }
+            set { SetProperty(ref _associatedCategoriesInfo, value); }
+        }
     }
+
+
 }

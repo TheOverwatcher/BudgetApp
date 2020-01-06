@@ -511,6 +511,44 @@ namespace BudgetApp
             }
         }
 
+        public ObservableCollection<BudgetCategory> SelectAllCategoryInformationAssociatedToBudget(int budgetId)
+        {
+            StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT BCR.budget_id, B.budget_name, BCR.category_id, C.category_name, BCR.amount_limit, BCR.current_amount FROM CATEGORY C ")
+                .Append("LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId LEFT OUTER JOIN BUDGET B on B.budget_id = @BudgetId WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
+
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
+            {
+                ObservableCollection<BudgetCategory> budgetCategoryInfo = new ObservableCollection<BudgetCategory>();
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.VarChar);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            BudgetCategory category = new BudgetCategory(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5));
+                            budgetCategoryInfo.Add(category);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for categories associated to budget " + budgetId);
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while selecting categories for budget " + budgetId + ". Message:" + e.Message + " SQL: " + selectAllCategoriesQuery);
+                }
+
+                return budgetCategoryInfo;
+            }
+        }
+
         public void CloseConnection()
         {
             this.connection.Close();
