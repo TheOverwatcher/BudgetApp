@@ -14,7 +14,6 @@ C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\MainWi
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.g.resources
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.Properties.Resources.resources
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.csproj.GenerateResource.cache
-C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.csproj.CoreCompileInputs.cache
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.exe
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetApp.pdb
 C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetManagement.g.cs
@@ -58,3 +57,5 @@ E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debu
 E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\BudgetForm.baml
 E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.g.cs
 E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.baml
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.g.cs
+C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\CategoriesManagement.baml

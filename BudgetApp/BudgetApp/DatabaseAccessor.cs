@@ -18,7 +18,7 @@ namespace BudgetApp
         public DatabaseAccessor()
         {
             //TODO make data directory configurable
-            AppDomain.CurrentDomain.SetData("DataDirectory", "E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp");
+            AppDomain.CurrentDomain.SetData("DataDirectory", "C:\\Users\\grayson\\Documents\\GitHub\\BudgetApp\\BudgetApp\\BudgetApp");//"E:\\Projects\\Visual Studio\\repos\\BudgetApp\\BudgetApp\\BudgetApp\\BudgetApp");
 
             string connectionString = null;
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
@@ -45,9 +45,9 @@ namespace BudgetApp
 
         public void DeleteAccount( int id)
         {
-            string deleteQuery = "DELETE FROM ACCOUNTS WHERE ACCOUNT_ID = @Id";
+            StringBuilder deleteQuery = new StringBuilder("DELETE FROM ACCOUNTS WHERE ACCOUNT_ID = @Id");
 
-            using(SqlCommand command = new SqlCommand(deleteQuery, this.connection))
+            using(SqlCommand command = new SqlCommand(deleteQuery.ToString(), this.connection))
             {
                 
                 try
@@ -66,10 +66,10 @@ namespace BudgetApp
 
         public void InsertAccount(string name, string code, string type, int groupId, Double currentBalance)
         {
-            string insertQuery = "INSERT INTO ACCOUNTS (ACCOUNT_NAME,ACCOUNT_CODE, ACCOUNT_TYPE, ACCOUNT_GROUP_ID, CURRENT_BALANCE, CONDITION)"
-                 + " VALUES (@Name,@Code,@Type,@GroupId,@Balance,'Open')";
+            StringBuilder insertQuery = new StringBuilder("INSERT INTO ACCOUNTS (ACCOUNT_NAME,ACCOUNT_CODE, ACCOUNT_TYPE, ACCOUNT_GROUP_ID, CURRENT_BALANCE, CONDITION)")
+                .Append(" VALUES (@Name,@Code,@Type,@GroupId,@Balance,'Open')");
 
-            using (SqlCommand command = new SqlCommand(insertQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(insertQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -95,9 +95,9 @@ namespace BudgetApp
 
         public ObservableCollection<Account> SelectAllAccounts()
         {
-            string selectAllAccountsQuery = "SELECT * FROM ACCOUNTS";
+            StringBuilder selectAllAccountsQuery = new StringBuilder("SELECT * FROM ACCOUNTS");
 
-            using(SqlCommand command = new SqlCommand(selectAllAccountsQuery, this.connection))
+            using(SqlCommand command = new SqlCommand(selectAllAccountsQuery.ToString(), this.connection))
             {
                 ObservableCollection<Account> accountInfo = new ObservableCollection<Account>();
                 try
@@ -133,9 +133,9 @@ namespace BudgetApp
 
         public void UpdateAccount(int accountId, string name, string code, string type, int groupId, Double currentBalance)
         {
-            string updateAccountQuery = "UPDATE ACCOUNTS SET ACCOUNT_NAME = @Name, ACCOUNT_CODE = @Code, ACCOUNT_TYPE = @Type, ACCOUNT_GROUP_ID = @GroupId, CURRENT_BALANCE = @Balance WHERE ACCOUNT_ID = @Id";
+            StringBuilder updateAccountQuery = new StringBuilder("UPDATE ACCOUNTS SET ACCOUNT_NAME = @Name, ACCOUNT_CODE = @Code, ACCOUNT_TYPE = @Type, ACCOUNT_GROUP_ID = @GroupId, CURRENT_BALANCE = @Balance WHERE ACCOUNT_ID = @Id");
 
-            using (SqlCommand command = new SqlCommand(updateAccountQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(updateAccountQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -166,9 +166,9 @@ namespace BudgetApp
 
         public void InsertBudget(string name)
         {
-            string insertBudgetQuery = "INSERT INTO BUDGET (BUDGET_NAME) VALUES (@Name)";
+            StringBuilder insertBudgetQuery = new StringBuilder("INSERT INTO BUDGET (BUDGET_NAME) VALUES (@Name)");
 
-            using (SqlCommand command = new SqlCommand(insertBudgetQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(insertBudgetQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -186,9 +186,9 @@ namespace BudgetApp
 
         public void DeleteBudget(int budgetId)
         {
-            string deleteBudgetQuery = "DELETE FROM BUDGET WHERE BUDGET_ID = @Id";
+            StringBuilder deleteBudgetQuery = new StringBuilder("DELETE FROM BUDGET WHERE BUDGET_ID = @Id");
 
-            using (SqlCommand command = new SqlCommand(deleteBudgetQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(deleteBudgetQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -206,9 +206,9 @@ namespace BudgetApp
 
         public void UpdateBudget(int budgetId, string name)
         {
-            string updateBudgetQuery = "UPDATE BUDGET SET BUDGET_NAME = @Name WHERE BUDGET_ID = @Id";
+            StringBuilder updateBudgetQuery = new StringBuilder("UPDATE BUDGET SET BUDGET_NAME = @Name WHERE BUDGET_ID = @Id");
 
-            using (SqlCommand command = new SqlCommand(updateBudgetQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(updateBudgetQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -228,9 +228,9 @@ namespace BudgetApp
 
         public ObservableCollection<Budget> SelectAllBudgets()
         {
-            string selectAllBudgetsQuery = "SELECT * FROM BUDGET";
+            StringBuilder selectAllBudgetsQuery = new StringBuilder("SELECT * FROM BUDGET");
 
-            using (SqlCommand command = new SqlCommand(selectAllBudgetsQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(selectAllBudgetsQuery.ToString(), this.connection))
             {
                 ObservableCollection<Budget> budgetInfo = new ObservableCollection<Budget>();
                 try
@@ -263,9 +263,9 @@ namespace BudgetApp
 
         public void InsertCategory(string name)
         {
-            string insertCategoryQuery = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (@Name)";
+            StringBuilder insertCategoryQuery = new StringBuilder("INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (@Name)");
 
-            using (SqlCommand command = new SqlCommand(insertCategoryQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(insertCategoryQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -283,9 +283,9 @@ namespace BudgetApp
 
         public void DeleteCategory(int categoryId)
         {
-            string deleteCategoryQuery = "DELETE FROM CATEGORY WHERE CATEGORY_ID = @Id";
+            StringBuilder deleteCategoryQuery = new StringBuilder("DELETE FROM CATEGORY WHERE CATEGORY_ID = @Id");
 
-            using (SqlCommand command = new SqlCommand(deleteCategoryQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(deleteCategoryQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -303,9 +303,9 @@ namespace BudgetApp
 
         public void UpdateCategory(int categoryId, string name)
         {
-            string updateCategoryQuery = "UPDATE CATEGROY SET CATEGORY_NAME = @Name WHERE CATEGORY_ID = @Id";
+            StringBuilder updateCategoryQuery = new StringBuilder("UPDATE CATEGROY SET CATEGORY_NAME = @Name WHERE CATEGORY_ID = @Id");
 
-            using (SqlCommand command = new SqlCommand(updateCategoryQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(updateCategoryQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -325,9 +325,9 @@ namespace BudgetApp
 
         public ObservableCollection<Category> SelectAllCategories()
         {
-            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY";
+            StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY");
 
-            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
                 ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
                 try
@@ -358,14 +358,11 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId, int recordCount)
+        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId)
         {
-            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+            StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
                 
-            if(recordCount > 0)
-                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
-
-            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
                 ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
                 try
@@ -398,14 +395,11 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId, int recordCount)
+        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId)
         {
-            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+            StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = 3 AND BCR.category_id = C.category_id WHERE BCR.category_id IS NULL");
 
-            if (recordCount > 0)
-                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID <> C.CATEGORY_ID");
-
-            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
                 ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
                 try
@@ -440,9 +434,9 @@ namespace BudgetApp
 
         public void AssociateCategoryToBudget(int budgetId, int categoryId)
         {
-            string insertBudgetCategoryRelQuery = "INSERT INTO BUDGET_CATEGORY_REL (BUDGET_ID, CATEGORY_ID) VALUES (@BudgetId, @CategoryId)";
+            StringBuilder insertBudgetCategoryRelQuery = new StringBuilder("INSERT INTO BUDGET_CATEGORY_REL (BUDGET_ID, CATEGORY_ID) VALUES (@BudgetId, @CategoryId)");
 
-            using (SqlCommand command = new SqlCommand(insertBudgetCategoryRelQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(insertBudgetCategoryRelQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -462,9 +456,9 @@ namespace BudgetApp
 
         public void DisassociateCategoryToBudget(int budgetId, int categoryId)
         {
-            string deleteBudgetCategoryRelQuery = "DELETE FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId AND CATEGORY_ID = @CategoryId";
+            StringBuilder deleteBudgetCategoryRelQuery = new StringBuilder("DELETE FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId AND CATEGORY_ID = @CategoryId");
 
-            using (SqlCommand command = new SqlCommand(deleteBudgetCategoryRelQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(deleteBudgetCategoryRelQuery.ToString(), this.connection))
             {
                 try
                 {
@@ -482,18 +476,31 @@ namespace BudgetApp
             }
         }
 
-        public int CountBudgetCategoryRel()
+        public int CountBudgetCategoryRel(int budgetId)
         {
-            string countBudgetCategoryRelQuery = "SELECT COUNT(*) FROM BUDGET_CATEGORY_REL";
+            StringBuilder countBudgetCategoryRelQuery = new StringBuilder("SELECT COUNT(*) FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId");
 
-            using (SqlCommand command = new SqlCommand(countBudgetCategoryRelQuery, this.connection))
+            using (SqlCommand command = new SqlCommand(countBudgetCategoryRelQuery.ToString(), this.connection))
             {
                 int count = 0;
                 try
                 {
                     this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.Int);
+                    command.Parameters["@BudgetId"].Value = budgetId;
                     SqlDataReader reader = command.ExecuteReader();
-                    count = reader.GetInt32(0);
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            count = reader.GetInt32(0);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Budget-Category relations exist for budget " + budgetId);
+                    }
+                    reader.Close();
 
                 }
                 catch (Exception e)
