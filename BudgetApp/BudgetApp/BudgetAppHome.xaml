@@ -47,16 +47,16 @@
                     </Grid.RowDefinitions>
 
                     <Label FontWeight="Bold">Budget</Label>
-                    <ListView Grid.Row="1" Grid.RowSpan="3" >
+                    <ListView Grid.Row="1" Grid.RowSpan="3" Name="BudgetList" ItemsSource="{Binding Budget}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID"/>
-                                <GridViewColumn Header="Budget Name"/>
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding BudgetId}"/>
+                                <GridViewColumn Header="Budget Name" DisplayMemberBinding="{Binding BudgetName}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <Label Grid.Column="2" FontWeight="Bold">Budget Details</Label>
-                    <ListView Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                    <ListView Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Name="BudgetDetails">
                         <ListView.View>
                             <GridView>
                                 
@@ -64,7 +64,7 @@
                         </ListView.View>
                     </ListView>
                     <Label Grid.Column="2" Grid.Row="2" FontWeight="Bold">Budget Categories</Label>
-                    <ListView Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" >
+                    <ListView Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Name="BudgetCategories" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Category ID"/>
@@ -80,7 +80,8 @@
                         <Button Grid.Column="0" Click="AddNewBudget" Style="{StaticResource SimpleButton}">Add</Button>
                         <Button Grid.Column="1" Click="RemoveBudget" Style="{StaticResource SimpleButton}">Remove</Button>
                     </Grid>
-                    <Button Grid.Row="4" Grid.Column="4" Style="{StaticResource SimpleButton}">Manage Categories</Button>
+                    <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource SimpleButton}" Click="ManageBudget">Manage Budget</Button>
+                    <Button Grid.Row="4" Grid.Column="4" Style="{StaticResource SimpleButton}" Click="ManageCategories">Manage Categories</Button>
                 </Grid>
             </TabItem>
             

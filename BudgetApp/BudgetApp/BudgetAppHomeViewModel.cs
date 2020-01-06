@@ -25,5 +25,12 @@ namespace BudgetApp
             get { return _accounts; }
             set { SetProperty(ref _accounts, value); }
         }
+
+        ObservableCollection<Budget> _budgets = new DatabaseAccessor().SelectAllBudgets();
+        public ObservableCollection<Budget> Budget
+        {
+            get { return _budgets; }
+            set { SetProperty(ref _budgets, value); }
+        }
     }
 }

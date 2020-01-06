@@ -39,7 +39,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label>Available Categories</Label>
-            <ListBox Grid.Row="1"></ListBox>
+            <ListView Grid.Row="1" Name ="AvailableCategories" ItemsSource="{Binding AvailableCategories}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
         
         <!-- Add and remove buttons -->
@@ -54,7 +61,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label>Associated Categories</Label>
-            <ListBox Grid.Row="1"></ListBox>
+            <ListView Grid.Row="1" Name="AssociatedCategories" ItemsSource="{Binding AssociatedCatgories}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CategoryName}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">

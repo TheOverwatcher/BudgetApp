@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\obj\Debug\
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\obj\Debug\
 BudgetApp
 none
 false
 DEBUG;TRACE
-C:\Users\grayson\Documents\GitHub\BudgetApp\BudgetApp\BudgetApp\App.xaml
-6332508574
+E:\Projects\Visual Studio\repos\BudgetApp\BudgetApp\BudgetApp\BudgetApp\App.xaml
+7745055751
 2138115018
-191059320708
+241211253450
 162102594775
-AccountManagement.xaml;BudgetAppHome.xaml;BudgetForm.xaml;BudgetManagement.xaml;MainWindow.xaml;AccountForm.xaml;
+AccountManagement.xaml;BudgetAppHome.xaml;BudgetForm.xaml;BudgetManagement.xaml;CategoriesManagement.xaml;MainWindow.xaml;AccountForm.xaml;
 
-True
+False
 

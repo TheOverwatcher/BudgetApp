@@ -13,10 +13,12 @@ namespace BudgetApp
         public const string ACCOUNT_MANAGEMENT = "Account Management";
         public const string ACCOUNT_FORM = "Account Form";
         public const string BUDGET_MANAGEMENT = "Budget Management";
+        public const string BUDGET_FORM = "Budget Form";
 
         // Tab name constants
         public const string ACCOUNT_OVERVIEW = "Account Overview";
         public const string BUDGET_OVERVIEW = "Budget Overview";
+        public const string CATEGORIES_OVERVIEW = "Categories Overview";
 
 
         //TODO modularize path into configuration

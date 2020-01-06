@@ -26,7 +26,7 @@ namespace BudgetApp
             {
                 try
                 {
-                    connectionString = Constants.CONNECTION_STRING;//settings[1].ConnectionString; // settings[0] is def
+                    connectionString = settings[1].ConnectionString; // settings[0] is def
                     this.connection = new SqlConnection(connectionString);
                 }
                 catch (Exception e)
@@ -40,6 +40,8 @@ namespace BudgetApp
                 Console.WriteLine("Error finding connection string. Please check that configuration was setup.");
             }
         }
+
+        /* Account Related SQL */
 
         public void DeleteAccount( int id)
         {
@@ -93,9 +95,9 @@ namespace BudgetApp
 
         public ObservableCollection<Account> SelectAllAccounts()
         {
-            string selectAllQuery = "SELECT * FROM ACCOUNTS";
+            string selectAllAccountsQuery = "SELECT * FROM ACCOUNTS";
 
-            using(SqlCommand command = new SqlCommand(selectAllQuery, this.connection))
+            using(SqlCommand command = new SqlCommand(selectAllAccountsQuery, this.connection))
             {
                 ObservableCollection<Account> accountInfo = new ObservableCollection<Account>();
                 try
@@ -121,7 +123,7 @@ namespace BudgetApp
                 }
                 catch (Exception e) // General Exception handling
                 {
-                    Console.WriteLine("Error processing SQL while selecting. Message:" + e.Message + " SQL: " + selectAllQuery);
+                    Console.WriteLine("Error processing SQL while selecting accounts. Message:" + e.Message + " SQL: " + selectAllAccountsQuery);
                 }
 
                 return accountInfo;
@@ -158,6 +160,348 @@ namespace BudgetApp
                 }
             }
 
+        }
+
+        /* Budget Related SQL */
+
+        public void InsertBudget(string name)
+        {
+            string insertBudgetQuery = "INSERT INTO BUDGET (BUDGET_NAME) VALUES (@Name)";
+
+            using (SqlCommand command = new SqlCommand(insertBudgetQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Name", SqlDbType.VarChar);
+                    command.Parameters["@Name"].Value = name;
+                    command.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while inserting budget " + name + ". Message:" + e.Message + " SQL: " + insertBudgetQuery);
+                }
+            }
+        }
+
+        public void DeleteBudget(int budgetId)
+        {
+            string deleteBudgetQuery = "DELETE FROM BUDGET WHERE BUDGET_ID = @Id";
+
+            using (SqlCommand command = new SqlCommand(deleteBudgetQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Id", SqlDbType.VarChar);
+                    command.Parameters["@Id"].Value = budgetId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while deleting budget " + budgetId + ". Message:" + e.Message + " SQL: " + deleteBudgetQuery);
+                }
+            }
+        }
+
+        public void UpdateBudget(int budgetId, string name)
+        {
+            string updateBudgetQuery = "UPDATE BUDGET SET BUDGET_NAME = @Name WHERE BUDGET_ID = @Id";
+
+            using (SqlCommand command = new SqlCommand(updateBudgetQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Name", SqlDbType.VarChar);
+                    command.Parameters["@Name"].Value = name;
+                    command.Parameters.Add("@Id", SqlDbType.VarChar);
+                    command.Parameters["@Id"].Value = budgetId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while updating budget " + budgetId + ". Message:" + e.Message + " SQL: " + updateBudgetQuery);
+                }
+            }
+        }
+
+        public ObservableCollection<Budget> SelectAllBudgets()
+        {
+            string selectAllBudgetsQuery = "SELECT * FROM BUDGET";
+
+            using (SqlCommand command = new SqlCommand(selectAllBudgetsQuery, this.connection))
+            {
+                ObservableCollection<Budget> budgetInfo = new ObservableCollection<Budget>();
+                try
+                {
+                    this.connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Budget budget = new Budget(reader.GetInt32(0), reader.GetString(1));
+                            budgetInfo.Add(budget);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for Budgets");
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while selecting budgets. Message:" + e.Message + " SQL: " + selectAllBudgetsQuery);
+                }
+
+                return budgetInfo;
+            }
+        }
+
+        public void InsertCategory(string name)
+        {
+            string insertCategoryQuery = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (@Name)";
+
+            using (SqlCommand command = new SqlCommand(insertCategoryQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Name", SqlDbType.VarChar);
+                    command.Parameters["@Name"].Value = name;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while inserting budget " + name + ". Message:" + e.Message + " SQL: " + insertCategoryQuery);
+                }
+            }
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            string deleteCategoryQuery = "DELETE FROM CATEGORY WHERE CATEGORY_ID = @Id";
+
+            using (SqlCommand command = new SqlCommand(deleteCategoryQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Id", SqlDbType.VarChar);
+                    command.Parameters["@Id"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while deleting category " + categoryId + ". Message:" + e.Message + " SQL: " + deleteCategoryQuery);
+                }
+            }
+        }
+
+        public void UpdateCategory(int categoryId, string name)
+        {
+            string updateCategoryQuery = "UPDATE CATEGROY SET CATEGORY_NAME = @Name WHERE CATEGORY_ID = @Id";
+
+            using (SqlCommand command = new SqlCommand(updateCategoryQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@Name", SqlDbType.VarChar);
+                    command.Parameters["@Name"].Value = name;
+                    command.Parameters.Add("@Id", SqlDbType.VarChar);
+                    command.Parameters["@Id"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while updating category " + categoryId + ". Message:" + e.Message + " SQL: " + updateCategoryQuery);
+                }
+            }
+        }
+
+        public ObservableCollection<Category> SelectAllCategories()
+        {
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY";
+
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            {
+                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                try
+                {
+                    this.connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Category category = new Category(reader.GetInt32(0), reader.GetString(1));
+                            categoryInfo.Add(category);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for Categories");
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while selecting categories. Message:" + e.Message + " SQL: " + selectAllCategoriesQuery);
+                }
+
+                return categoryInfo;
+            }
+        }
+
+        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId, int recordCount)
+        {
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+                
+            if(recordCount > 0)
+                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
+
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            {
+                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.VarChar);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Category category = new Category(reader.GetInt32(0), reader.GetString(1));
+                            categoryInfo.Add(category);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for categories associated to budget " + budgetId);
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while selecting categories for budget " + budgetId + ". Message:" + e.Message + " SQL: " + selectAllCategoriesQuery);
+                }
+
+                return categoryInfo;
+            }
+        }
+
+        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId, int recordCount)
+        {
+            string selectAllCategoriesQuery = "SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId";
+
+            if (recordCount > 0)
+                selectAllCategoriesQuery.Concat(" WHERE BCR.CATEGORY_ID <> C.CATEGORY_ID");
+
+            using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery, this.connection))
+            {
+                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.VarChar);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Category category = new Category(reader.GetInt32(0), reader.GetString(1));
+                            categoryInfo.Add(category);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No entries found for categories associated to budget " + budgetId);
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception e) // General Exception handling
+                {
+                    Console.WriteLine("Error processing SQL while selecting categories for budget " + budgetId + ". Message:" + e.Message + " SQL: " + selectAllCategoriesQuery);
+                }
+
+                return categoryInfo;
+            }
+        }
+
+        public void AssociateCategoryToBudget(int budgetId, int categoryId)
+        {
+            string insertBudgetCategoryRelQuery = "INSERT INTO BUDGET_CATEGORY_REL (BUDGET_ID, CATEGORY_ID) VALUES (@BudgetId, @CategoryId)";
+
+            using (SqlCommand command = new SqlCommand(insertBudgetCategoryRelQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.Int);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    command.Parameters.Add("@CategoryId", SqlDbType.Int);
+                    command.Parameters["@CategoryId"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while associating category " + categoryId + "to budget " + budgetId + ". Message:" + e.Message + " SQL: " + insertBudgetCategoryRelQuery);
+                }
+            }
+        }
+
+        public void DisassociateCategoryToBudget(int budgetId, int categoryId)
+        {
+            string deleteBudgetCategoryRelQuery = "DELETE FROM BUDGET_CATEGORY_REL WHERE BUDGET_ID = @BudgetId AND CATEGORY_ID = @CategoryId";
+
+            using (SqlCommand command = new SqlCommand(deleteBudgetCategoryRelQuery, this.connection))
+            {
+                try
+                {
+                    this.connection.Open();
+                    command.Parameters.Add("@BudgetId", SqlDbType.Int);
+                    command.Parameters["@BudgetId"].Value = budgetId;
+                    command.Parameters.Add("@CategoryId", SqlDbType.Int);
+                    command.Parameters["@CategoryId"].Value = categoryId;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while deleting category " + categoryId + ". Message:" + e.Message + " SQL: " + deleteBudgetCategoryRelQuery);
+                }
+            }
+        }
+
+        public int CountBudgetCategoryRel()
+        {
+            string countBudgetCategoryRelQuery = "SELECT COUNT(*) FROM BUDGET_CATEGORY_REL";
+
+            using (SqlCommand command = new SqlCommand(countBudgetCategoryRelQuery, this.connection))
+            {
+                int count = 0;
+                try
+                {
+                    this.connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    count = reader.GetInt32(0);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error processing SQL while counting records in budget_category_rel. Message:" + e.Message + " SQL: " + countBudgetCategoryRelQuery);
+                }
+                return count;
+            }
         }
 
         public void CloseConnection()
