@@ -22,9 +22,9 @@ namespace BudgetApp
 
             //int recordCount = DbAccessor.CountBudgetCategoryRel(this.BudgetId);
             //DbAccessor.CloseConnection();
-            this._associatedCategories = DbAccessor.SelectAllCategoriesAssociatedToBudget(this.BudgetId);
+            //this._associatedCategories = DbAccessor.SelectAllCategoriesAssociatedToBudget(this.BudgetId);
             DbAccessor.CloseConnection();
-            this._availableCategories = DbAccessor.SelectAllCategoriesDisassociatedToBudget(this.BudgetId);
+            //this._availableCategories = DbAccessor.SelectAllCategoriesDisassociatedToBudget(this.BudgetId);
             DbAccessor.CloseConnection();
         }
 

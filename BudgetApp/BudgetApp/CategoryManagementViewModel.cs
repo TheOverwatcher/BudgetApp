@@ -11,16 +11,24 @@ namespace BudgetApp
     {
         public CategoryManagementViewModel()
         {
-
+            AddCategoriesFromStoreNoRefresh();
         }
 
         public CategoryManagementViewModel(string name, int id)
         {
-            this.CategoryName = name;
-            this.CategoryId = id;
+            CategoryName = name;
+            CategoryId = id;
+            AddCategoriesFromStoreNoRefresh();
         }
 
-
+        private void AddCategoriesFromStoreNoRefresh()
+        {
+            if (Categories == null) Categories = new ObservableCollection<Category>();
+            foreach (Category c in categoryDataStore.GetCategories(false))
+            {
+                Categories.Add(c);
+            }
+        }
 
         private string _categoryName = "Example Category Name";
         public string CategoryName
@@ -36,11 +44,7 @@ namespace BudgetApp
             set { SetProperty(ref _categoryId, value); }
         }
 
-        ObservableCollection<Category> _categories = new DatabaseAccessor().SelectAllCategories();
-        public ObservableCollection<Category> Category
-        {
-            get { return _categories; }
-            set { SetProperty(ref _categories, value); }
-        }
+        private CategoryDataStore categoryDataStore => CategoryDataStore.DataStore;
+        public ObservableCollection<Category> Categories { get; set; }
     }
 }

@@ -11,7 +11,26 @@ namespace BudgetApp
     {
         public BudgetAppHomeViewModel ()
         {
+            AddAccountsFromStoreNoRefresh();
+            AddBudgetsFromStoreNoRefresh();
+        }
 
+        private void AddAccountsFromStoreNoRefresh()
+        {
+            if (Accounts == null) Accounts = new ObservableCollection<Account>();
+            foreach (Account a in accountDataStore.GetAccounts(false))
+            {
+                Accounts.Add(a);
+            }
+        }
+
+        private void AddBudgetsFromStoreNoRefresh()
+        {
+            if (Budgets == null) Budgets = new ObservableCollection<Budget>();
+            foreach (Budget b in budgetDataStore.GetBudgets(false))
+            {
+                Budgets.Add(b);
+            }
         }
 
         public BudgetAppHomeViewModel (string pageName)
@@ -21,28 +40,32 @@ namespace BudgetApp
 
         public BudgetAppHomeViewModel(int budgetId)
         {
-            this.AssociatedCategoriesInfo = new DatabaseAccessor().SelectAllCategoryInformationAssociatedToBudget(budgetId);
+            //this.AssociatedCategoriesInfo = new DatabaseAccessor().SelectAllCategoryInformationAssociatedToBudget(budgetId);
+            AddAccountsFromStoreNoRefresh();
+            AddBudgetsFromStoreNoRefresh();
         }
 
-        ObservableCollection<Account> _accounts = new DatabaseAccessor().SelectAllAccounts();
-        public ObservableCollection<Account> Accounts
-        {
-            get { return _accounts; }
-            set { SetProperty(ref _accounts, value); }
-        }
+        private AccountDataStore accountDataStore => AccountDataStore.DataStore;
+        public ObservableCollection<Account> Accounts { get; set; }
 
-        ObservableCollection<Budget> _budgets = new DatabaseAccessor().SelectAllBudgets();
-        public ObservableCollection<Budget> Budget
-        {
-            get { return _budgets; }
-            set { SetProperty(ref _budgets, value); }
-        }
+        private BudgetDataStore budgetDataStore => BudgetDataStore.DataStore;
+        public ObservableCollection<Budget> Budgets { get; set; }
+
+
 
         ObservableCollection<BudgetCategory> _associatedCategoriesInfo = new ObservableCollection<BudgetCategory>();
         public ObservableCollection<BudgetCategory> AssociatedCategoriesInfo
         {
             get { return _associatedCategoriesInfo; }
             set { SetProperty(ref _associatedCategoriesInfo, value); }
+        }
+
+        private int _currentSelectedBudgetId;
+
+        public int CurrentSelectedBudgetId
+        {
+            get { return _currentSelectedBudgetId; }
+            set { SetProperty(ref _currentSelectedBudgetId, value); }
         }
     }
 

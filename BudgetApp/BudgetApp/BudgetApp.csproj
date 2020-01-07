@@ -133,8 +133,11 @@
       <DependentUpon>CategoriesManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs" />
+    <Compile Include="CategoryDataStore.cs" />
     <Compile Include="CategoryManagementViewModel.cs" />
     <Compile Include="BudgetCategory.cs" />
+    <Compile Include="BudgetDataStore.cs" />
+    <Compile Include="AccountDataStore.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DatabaseAccessor.cs" />
     <Compile Include="MainWindow.xaml.cs">

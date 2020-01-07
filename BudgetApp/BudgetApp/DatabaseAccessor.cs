@@ -93,13 +93,13 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Account> SelectAllAccounts()
+        public List<Account> SelectAllAccounts()
         {
             StringBuilder selectAllAccountsQuery = new StringBuilder("SELECT * FROM ACCOUNTS");
 
             using(SqlCommand command = new SqlCommand(selectAllAccountsQuery.ToString(), this.connection))
             {
-                ObservableCollection<Account> accountInfo = new ObservableCollection<Account>();
+                List<Account> accountInfo = new List<Account>();
                 try
                 {
                     this.connection.Open();
@@ -226,13 +226,13 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Budget> SelectAllBudgets()
+        public List<Budget> SelectAllBudgets()
         {
             StringBuilder selectAllBudgetsQuery = new StringBuilder("SELECT * FROM BUDGET");
 
             using (SqlCommand command = new SqlCommand(selectAllBudgetsQuery.ToString(), this.connection))
             {
-                ObservableCollection<Budget> budgetInfo = new ObservableCollection<Budget>();
+                List<Budget> budgetInfo = new List<Budget>();
                 try
                 {
                     this.connection.Open();
@@ -323,13 +323,13 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategories()
+        public List<Category> SelectAllCategories()
         {
             StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY");
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
-                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                List<Category> categoryInfo = new List<Category>();
                 try
                 {
                     this.connection.Open();
@@ -358,13 +358,13 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesAssociatedToBudget(int budgetId)
+        public List<Category> SelectAllCategoriesAssociatedToBudget(int budgetId)
         {
             StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
                 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
-                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                List<Category> categoryInfo = new List<Category>();
                 try
                 {
                     this.connection.Open();
@@ -395,13 +395,13 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId)
+        public List<Category> SelectAllCategoriesDisassociatedToBudget(int budgetId)
         {
             StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT * FROM CATEGORY C LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = 3 AND BCR.category_id = C.category_id WHERE BCR.category_id IS NULL");
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
-                ObservableCollection<Category> categoryInfo = new ObservableCollection<Category>();
+                List<Category> categoryInfo = new List<Category>();
                 try
                 {
                     this.connection.Open();
@@ -511,14 +511,14 @@ namespace BudgetApp
             }
         }
 
-        public ObservableCollection<BudgetCategory> SelectAllCategoryInformationAssociatedToBudget(int budgetId)
+        public List<BudgetCategory> SelectAllCategoryInformationAssociatedToBudget(int budgetId)
         {
             StringBuilder selectAllCategoriesQuery = new StringBuilder("SELECT BCR.budget_id, B.budget_name, BCR.category_id, C.category_name, BCR.amount_limit, BCR.current_amount FROM CATEGORY C ")
                 .Append("LEFT OUTER JOIN BUDGET_CATEGORY_REL BCR ON BCR.BUDGET_ID = @BudgetId LEFT OUTER JOIN BUDGET B on B.budget_id = @BudgetId WHERE BCR.CATEGORY_ID = C.CATEGORY_ID");
 
             using (SqlCommand command = new SqlCommand(selectAllCategoriesQuery.ToString(), this.connection))
             {
-                ObservableCollection<BudgetCategory> budgetCategoryInfo = new ObservableCollection<BudgetCategory>();
+                List<BudgetCategory> budgetCategoryInfo = new List<BudgetCategory>();
                 try
                 {
                     this.connection.Open();
@@ -529,7 +529,7 @@ namespace BudgetApp
                     {
                         while (reader.Read())
                         {
-                            BudgetCategory category = new BudgetCategory(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5));
+                            BudgetCategory category = new BudgetCategory(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt64(4), reader.GetInt64(5));
                             budgetCategoryInfo.Add(category);
                         }
                     }

@@ -8,7 +8,7 @@ namespace BudgetApp
 {
     class BudgetCategory
     {
-        public BudgetCategory (int budgetId, string budgetName, int categoryId, string categoryName, int categoryLimit, int currentAmount)
+        public BudgetCategory (int budgetId, string budgetName, int categoryId, string categoryName, long categoryLimit, long currentAmount)
         {
             this.Budget = new Budget(budgetId, budgetName);
             this.Category = new Category(categoryId, categoryName);
@@ -19,7 +19,7 @@ namespace BudgetApp
         public Budget Budget { get; set; }
         public Category Category { get; set; }
 
-        public int CategoryLimit { get; set; }
-        public int CurrentAmount { get; set; }
+        public long CategoryLimit { get; set; }
+        public long CurrentAmount { get; set; }
     }
 }

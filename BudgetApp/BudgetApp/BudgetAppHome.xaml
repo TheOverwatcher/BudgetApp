@@ -47,7 +47,7 @@
                     </Grid.RowDefinitions>
 
                     <Label FontWeight="Bold">Budget</Label>
-                    <ListView Grid.Row="1" Grid.RowSpan="3" Name="BudgetList" ItemsSource="{Binding Budget}" SelectionChanged="BudgetSelectionChanged">
+                    <ListView Grid.Row="1" Grid.RowSpan="3" Name="BudgetList" ItemsSource="{Binding Budgets}" SelectionChanged="BudgetSelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding BudgetId}"/>
@@ -68,8 +68,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Category Name" DisplayMemberBinding="{Binding Category.CategoryName}"/>
-                                <GridViewColumn Header="Category Limit" DisplayMemberBinding="{Binding Category.CategoryLimit}"/>
-                                <GridViewColumn Header="Current Amount" DisplayMemberBinding="{Binding Category.CurrentAmount}"/>
+                                <GridViewColumn Header="Category Limit" DisplayMemberBinding="{Binding CategoryLimit}"/>
+                                <GridViewColumn Header="Current Amount" DisplayMemberBinding="{Binding CurrentAmount}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
